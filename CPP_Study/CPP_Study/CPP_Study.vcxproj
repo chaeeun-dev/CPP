@@ -18,6 +18,13 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\INFLEARN_C++\INFLEARN_C++\array.cpp" />
+    <ClCompile Include="..\..\..\INFLEARN_C++\INFLEARN_C++\lotto.cpp" />
+    <ClCompile Include="..\..\..\INFLEARN_C++\INFLEARN_C++\pointer.cpp" />
+    <ClCompile Include="..\..\..\INFLEARN_C++\INFLEARN_C++\snail.cpp" />
+    <ClCompile Include="..\..\..\INFLEARN_C++\INFLEARN_C++\string.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
