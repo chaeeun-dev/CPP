@@ -128,7 +128,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="OOP.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Player.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h" />

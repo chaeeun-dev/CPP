@@ -5,14 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{EE38C903-0FC7-4C26-806B-51FF71B59FC9}|OOP\\OOP.vcxproj|D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\OOP\\OOP.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{EE38C903-0FC7-4C26-806B-51FF71B59FC9}|OOP\\OOP.vcxproj|solutionrelative:OOP\\OOP.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EE38C903-0FC7-4C26-806B-51FF71B59FC9}|OOP\\OOP.vcxproj|D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\OOP\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EE38C903-0FC7-4C26-806B-51FF71B59FC9}|OOP\\OOP.vcxproj|solutionrelative:OOP\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EE38C903-0FC7-4C26-806B-51FF71B59FC9}|OOP\\OOP.vcxproj|D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\OOP\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EE38C903-0FC7-4C26-806B-51FF71B59FC9}|OOP\\OOP.vcxproj|solutionrelative:OOP\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,47 +30,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Player.h",
-              "DocumentMoniker": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\OOP\\Player.h",
-              "RelativeDocumentMoniker": "OOP\\Player.h",
-              "ToolTip": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\OOP\\Player.h",
-              "RelativeToolTip": "OOP\\Player.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-07-16T03:25:15.822Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "OOP.cpp",
               "DocumentMoniker": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\OOP\\OOP.cpp",
               "RelativeDocumentMoniker": "OOP\\OOP.cpp",
               "ToolTip": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\OOP\\OOP.cpp",
               "RelativeToolTip": "OOP\\OOP.cpp",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABMAAAAPAAAA",
+              "ViewState": "AQIAAD4AAAAAAAAAAAAowEEAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-07-16T02:59:21.206Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Player.cpp",
-              "DocumentMoniker": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\OOP\\Player.cpp",
-              "RelativeDocumentMoniker": "OOP\\Player.cpp",
-              "ToolTip": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\OOP\\Player.cpp",
-              "RelativeToolTip": "OOP\\Player.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-07-16T03:25:34.067Z",
               "EditorCaption": ""
             }
           ]
