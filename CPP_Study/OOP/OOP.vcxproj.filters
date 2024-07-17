@@ -30,6 +30,9 @@
     <ClCompile Include="polymorphism.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="meber_variable_reset.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
