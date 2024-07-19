@@ -1,16 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{EE38C903-0FC7-4C26-806B-51FF71B59FC9}|OOP\\OOP.vcxproj|D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\OOP\\encapsulation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EE38C903-0FC7-4C26-806B-51FF71B59FC9}|OOP\\OOP.vcxproj|solutionrelative:OOP\\encapsulation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EE38C903-0FC7-4C26-806B-51FF71B59FC9}|OOP\\OOP.vcxproj|D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\OOP\\inheritance.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EE38C903-0FC7-4C26-806B-51FF71B59FC9}|OOP\\OOP.vcxproj|solutionrelative:OOP\\inheritance.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -31,32 +22,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "encapsulation.cpp",
-              "DocumentMoniker": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\OOP\\encapsulation.cpp",
-              "RelativeDocumentMoniker": "OOP\\encapsulation.cpp",
-              "ToolTip": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\OOP\\encapsulation.cpp",
-              "RelativeToolTip": "OOP\\encapsulation.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-07-16T07:51:43.711Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "inheritance.cpp",
-              "DocumentMoniker": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\OOP\\inheritance.cpp",
-              "RelativeDocumentMoniker": "OOP\\inheritance.cpp",
-              "ToolTip": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\OOP\\inheritance.cpp",
-              "RelativeToolTip": "OOP\\inheritance.cpp",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAAAEwAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-07-16T07:08:10.096Z",
-              "EditorCaption": ""
             }
           ]
         }
