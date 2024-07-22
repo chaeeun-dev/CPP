@@ -1,6 +1,6 @@
 ﻿
 ==========================================================================
-fileName ::, 2024-07-20 ����� ���� 11:34:16
+fileName ::, 2024-07-20            11:34:16
 ==========================================================================
 
 
@@ -56,7 +56,7 @@ int main()
 
 
 ==========================================================================
-fileName ::, 2024-07-22 ������ ���� 7:13:30
+fileName ::, 2024-07-22             7:13:30
 ==========================================================================
 
 
@@ -124,7 +124,7 @@ int main()
 
 
 ==========================================================================
-fileName ::, 2024-07-22 ������ ���� 7:21:28
+fileName ::, 2024-07-22             7:21:28
 ==========================================================================
 
 
@@ -184,7 +184,7 @@ int main()
 
 
 ==========================================================================
-fileName ::, 2024-07-22 ������ ���� 7:21:49
+fileName ::, 2024-07-22             7:21:49
 ==========================================================================
 
 
@@ -240,4 +240,69 @@ int main()
         }
     }
     save("RPGGAME.cpp");
+}
+
+//===========================================================
+
+#include <iostream>
+#include "Item.h"
+#include "Inventory.h"
+#include "save.h"
+
+// [시스템] 몬스터를 잡을 때, 아이템을 떨군다
+Item* DropItem()
+{
+    if (rand() % 2 == 0)
+    {
+        Weapon* weapon = new Weapon();
+        return weapon;
+    }
+    else
+    {
+        Armor* armor = new Armor();
+        return armor;
+    }
+}
+
+// 이렇게 로직 짤 수 있으면 절반은 한 거다
+// 디테일만 추가될 뿐..
+// 
+// 중요한 것은
+// 상속 구조 이해하고 가상함수를 상황에 맞게 사용할 수 있는지, 
+// 타입 캐스팅을 자유자재로 할 수 있는지
+// 몇 달은 걸릴 수 있다!
+//
+// 포폴로 온라인 게임 내는 사람 드묾 
+// -> 온라인 겜 만들면 엄청난 메리트!!
+int main()
+{
+    srand((unsigned)time(0));
+
+    for (int i = 0; i < 100; ++i)
+    {
+        Item* item = DropItem();
+        item->PrintInfo();
+        
+        if (Inventory::GetInstance()->AddItem(item))
+        {
+            std::cout << "Added Item to lnventory" << std::endl;
+        }
+        else
+        {
+            std::cout << "Failed to add Item" << std::endl;
+            delete item; 
+        }
+        
+        // PK 닿애서 랜덤으로 일부 아이템 드랍
+        for (int i = 0; i < 20; ++i)
+        {
+            int randIndex = rand() % MAX_SLOT;
+            Item* item = Inventory::GetInstance()->GetItemAtSlot(randIndex);
+            if (item && Inventory::GetInstance()->RemoveItem(item))   // if (item != nullptr) 과 같은 코드
+            {
+                std::cout << "Removed Item" << std::endl;
+            }
+        }
+    }
+    //save("RPGGAME.cpp");
 }
