@@ -1,0 +1,243 @@
+﻿
+==========================================================================
+fileName ::, 2024-07-20 ����� ���� 11:34:16
+==========================================================================
+
+
+﻿#include <iostream>
+#include "Item.h"
+#include "save.h"
+
+// [시스템] 몬스터를 잡을 때, 아이템을 떨군다
+Item* DropItem()
+{
+    if (rand() % 2 == 0)
+    {
+        Weapon* weapon = new Weapon();
+        return weapon;
+    }
+    else
+    {
+        Armor* armor = new Armor();
+        return armor;
+    }
+}
+
+int main()
+{
+    srand((unsigned)time(0));
+
+    for (int i = 0; i < 100; ++i)
+    {
+        Item* item = DropItem();
+        item->PrintInfo();
+
+        ItemType itemType = item->GetItemType();
+        if (itemType == IT_Weapon)
+        {
+            Weapon* weapon = (Weapon*)item; // 굉장히 위험한 작업이니 캐스팅은 항상 주의하자!!
+            weapon->GetDamage();
+        }
+        else if (itemType == IT_Armor)
+        {
+            Armor* armor = (Armor*)item;
+            armor->GetDefence();
+        }
+        /*
+            상속을 받은 객체 모두가 동일한 함수를 쓰게 하려면
+            -> virtual 함수를 이용
+
+            상속 받은 객체 중 일부만 사용할 기능을 쓰고 싶다면
+            -> 변환, 캐스팅을 이용
+        */
+    }
+    save("RPGGAME.cpp");
+}
+
+
+==========================================================================
+fileName ::, 2024-07-22 ������ ���� 7:13:30
+==========================================================================
+
+
+﻿#include <iostream>
+#include "Item.h"
+#include "Inventory.h"
+#include "save.h"
+
+// [시스템] 몬스터를 잡을 때, 아이템을 떨군다
+Item* DropItem()
+{
+    if (rand() % 2 == 0)
+    {
+        Weapon* weapon = new Weapon();
+        return weapon;
+    }
+    else
+    {
+        Armor* armor = new Armor();
+        return armor;
+    }
+}
+
+int main()
+{
+    srand((unsigned)time(0));
+
+    for (int i = 0; i < 100; ++i)
+    {
+        Item* item = DropItem();
+        item->PrintInfo();
+        
+        if (Inventory::GetInstance()->AddItem(item))
+        {
+            std::cout << "Added Item to lnventory" << std::endl;
+        }
+        else
+        {
+            std::cout << "Failed to add Item" << std::endl;
+            delete item; 
+        }
+        
+        //ItemType itemType = item->GetItemType();
+        //if (itemType == IT_Weapon)
+        //{
+        //    Weapon* weapon = (Weapon*)item; // 굉장히 위험한 작업이니 캐스팅은 항상 주의하자!!
+        //    weapon->GetDamage();
+        //}
+        //else if (itemType == IT_Armor)
+        //{
+        //    Armor* armor = (Armor*)item;
+        //    armor->GetDefence();
+        //}
+
+        /*
+            상속을 받은 객체 모두가 동일한 함수를 쓰게 하려면
+            -> virtual 함수를 이용
+
+            상속 받은 객체 중 일부만 사용할 기능을 쓰고 싶다면
+            -> 변환, 캐스팅을 이용
+        */
+    }
+    save("RPGGAME.cpp");
+}
+
+
+==========================================================================
+fileName ::, 2024-07-22 ������ ���� 7:21:28
+==========================================================================
+
+
+﻿#include <iostream>
+#include "Item.h"
+#include "Inventory.h"
+#include "save.h"
+
+// [시스템] 몬스터를 잡을 때, 아이템을 떨군다
+Item* DropItem()
+{
+    if (rand() % 2 == 0)
+    {
+        Weapon* weapon = new Weapon();
+        return weapon;
+    }
+    else
+    {
+        Armor* armor = new Armor();
+        return armor;
+    }
+}
+
+int main()
+{
+    srand((unsigned)time(0));
+
+    for (int i = 0; i < 100; ++i)
+    {
+        Item* item = DropItem();
+        item->PrintInfo();
+        
+        if (Inventory::GetInstance()->AddItem(item))
+        {
+            std::cout << "Added Item to lnventory" << std::endl;
+        }
+        else
+        {
+            std::cout << "Failed to add Item" << std::endl;
+            delete item; 
+        }
+        
+        // PK 닿애서 랜덤으로 일부 아이템 드랍
+        for (int i = 0; i < 20; ++i)
+        {
+            int randIndex = rand() % MAX_SLOT;
+            Item* item = Inventory::GetInstance()->GetItemAtSlot(randIndex);
+            if (item)   // if (item != nullptr) 과 같은 코드
+            {
+                if (Inventory::GetInstance()->RemoveItem(item))
+                    std::cout << "Removed Item" << std::endl;
+            }
+        }
+    }
+    save("RPGGAME.cpp");
+}
+
+
+==========================================================================
+fileName ::, 2024-07-22 ������ ���� 7:21:49
+==========================================================================
+
+
+﻿#include <iostream>
+#include "Item.h"
+#include "Inventory.h"
+#include "save.h"
+
+// [시스템] 몬스터를 잡을 때, 아이템을 떨군다
+Item* DropItem()
+{
+    if (rand() % 2 == 0)
+    {
+        Weapon* weapon = new Weapon();
+        return weapon;
+    }
+    else
+    {
+        Armor* armor = new Armor();
+        return armor;
+    }
+}
+
+int main()
+{
+    srand((unsigned)time(0));
+
+    for (int i = 0; i < 100; ++i)
+    {
+        Item* item = DropItem();
+        item->PrintInfo();
+        
+        if (Inventory::GetInstance()->AddItem(item))
+        {
+            std::cout << "Added Item to lnventory" << std::endl;
+        }
+        else
+        {
+            std::cout << "Failed to add Item" << std::endl;
+            delete item; 
+        }
+        
+        // PK 닿애서 랜덤으로 일부 아이템 드랍
+        for (int i = 0; i < 20; ++i)
+        {
+            int randIndex = rand() % MAX_SLOT;
+            Item* item = Inventory::GetInstance()->GetItemAtSlot(randIndex);
+            if (item)   // if (item != nullptr) 과 같은 코드
+            {
+                if (Inventory::GetInstance()->RemoveItem(item))
+                    std::cout << "Removed Item" << std::endl;
+            }
+        }
+    }
+    save("RPGGAME.cpp");
+}
