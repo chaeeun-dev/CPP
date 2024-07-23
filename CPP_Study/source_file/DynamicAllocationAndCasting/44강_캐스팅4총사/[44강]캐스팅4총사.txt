@@ -1,0 +1,327 @@
+
+
+==========================================================================
+fileName ::, 2024-07-23 화요일 오후 8:48:34
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+// 캐스팅 4총사(앞 두개가 핵심이지만, 면접에 자주 나옴)
+// static_cast << 
+// dynamic_cast <<
+// const_cast
+// reinterpret_cast
+
+// C 스타일 캐스팅
+// 동일한 문법인데도 어디서 사용하냐에 따라 완전히 달라지기 때문에 위험!
+
+class Player
+{
+
+};
+
+class Knight : public Player
+{
+
+};
+
+int main()
+{
+	// static_cast : 타입 원칙에 비춰볼 때 상식적인 캐스팅만 허용해준다
+	// 1) int <-> float
+	// 2) Player* -> Knight
+
+	int hp = 100;
+	int maxHp = 200;
+	//float ratio = hp / maxHp;	// 결과는 0, 오른쪽 / 연산부터 처리하기 때문에
+	float ratio = (float)hp / maxHp;	// 이렇게 하면 0.5
+
+	Knight* k = new Knight();
+	Player* p = k;	// Knigt를 Playerㄹ 변한	
+	//Knight* k2 = p;	// Player를 Knigt로 변환 -> 위험한 작업이니 에러 발생
+	Knight* k2 = (Knight*)p;	// 뭘 하는지 알고 괜찮으니까 통과시켜줘
+	
+	// 근데, K가 Knight가 아니라 Archer같은 형이라면 메모리가 난리가 나는 것...
+	// 위험하니까 조심해서 사용하자! 
+
+	save("cpp.cpp");
+}
+
+
+==========================================================================
+fileName ::, 2024-07-23 화요일 오후 8:59:44
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+// 캐스팅 4총사(앞 두개가 핵심이지만, 면접에 자주 나옴)
+// static_cast << 
+// dynamic_cast <<
+// const_cast
+// reinterpret_cast
+
+// C 스타일 캐스팅
+// 동일한 문법인데도 어디서 사용하냐에 따라 완전히 달라지기 때문에 위험!
+
+class Player
+{
+public:
+	Player() { };
+	virtual ~Player() { };
+};
+
+class Knight : public Player
+{
+public:
+	Knight() { }
+	virtual ~Knight() { }
+};
+
+class Archer : public Player
+{
+
+};
+
+int main()
+{
+	// static_cast : 타입 원칙에 비춰볼 때 상식적인 캐스팅만 허용해준다
+	// 1) int <-> float
+	// 2) Player* -> Knight
+
+	int hp = 100;
+	int maxHp = 200;
+	float ratio = (float)hp / maxHp;
+
+	Archer* k = new Archer();
+	Player* p = k;	
+	//Knight* k2 = (Knight*)p;
+	
+	// dynamic_cast : 상속 관계에서의 안전 변환 
+	// 다형성을 활용하는 방식
+	// RTTI (RunTime Type Information)
+	Knight* k2 = dynamic_cast<Knight*>(p);
+	// 바꿔도 되는 경우에만 바꿔주고 안 되는 경우에는 0을 넣어줌!
+	// 만약 Archer -> Player -> Knight 였다면 0일것..
+	if (k2)
+	{
+		std::cout << "기사다!" << std::endl;
+	}
+	else
+		std::cout << "기사가 아니다!" << std::endl;
+
+	save("cpp.cpp");
+}
+기사가 아니다!
+
+==========================================================================
+fileName ::, 2024-07-23 화요일 오후 9:00:10
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+// 캐스팅 4총사(앞 두개가 핵심이지만, 면접에 자주 나옴)
+// static_cast << 
+// dynamic_cast <<
+// const_cast
+// reinterpret_cast
+
+// C 스타일 캐스팅
+// 동일한 문법인데도 어디서 사용하냐에 따라 완전히 달라지기 때문에 위험!
+
+class Player
+{
+public:
+	Player() { };
+	virtual ~Player() { };
+};
+
+class Knight : public Player
+{
+public:
+	Knight() { }
+	virtual ~Knight() { }
+};
+
+class Archer : public Player
+{
+
+};
+
+int main()
+{
+	// static_cast : 타입 원칙에 비춰볼 때 상식적인 캐스팅만 허용해준다
+	// 1) int <-> float
+	// 2) Player* -> Knight
+
+	int hp = 100;
+	int maxHp = 200;
+	float ratio = (float)hp / maxHp;
+
+	Knight* k = new Knight();
+	Player* p = k;	
+	//Knight* k2 = (Knight*)p;
+	
+	// dynamic_cast : 상속 관계에서의 안전 변환 
+	// 다형성을 활용하는 방식
+	// RTTI (RunTime Type Information)
+	Knight* k2 = dynamic_cast<Knight*>(p);
+	// 바꿔도 되는 경우에만 바꿔주고 안 되는 경우에는 0을 넣어줌!
+	// 만약 Archer -> Player -> Knight 였다면 0일것..
+	if (k2)
+	{
+		std::cout << "기사다!" << std::endl;
+	}
+	else
+		std::cout << "기사가 아니다!" << std::endl;
+
+	save("cpp.cpp");
+}
+
+기사다!
+
+==========================================================================
+fileName ::, 2024-07-23 화요일 오후 9:05:37
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+// 캐스팅 4총사(앞 두개가 핵심이지만, 면접에 자주 나옴)
+// static_cast << 
+// dynamic_cast <<
+// const_cast
+// reinterpret_cast
+
+// C 스타일 캐스팅
+// 동일한 문법인데도 어디서 사용하냐에 따라 완전히 달라지기 때문에 위험!
+
+class Player
+{
+public:
+	Player() { };
+	virtual ~Player() { };
+};
+
+class Knight : public Player
+{
+public:
+	Knight() { }
+	virtual ~Knight() { }
+};
+
+class Archer : public Player
+{
+
+};
+
+int main()
+{
+	// static_cast : 타입 원칙에 비춰볼 때 상식적인 캐스팅만 허용해준다
+	// 1) int <-> float
+	// 2) Player* -> Knight
+
+	int hp = 100;
+	int maxHp = 200;
+	float ratio = (float)hp / maxHp;
+
+	Knight* k = new Knight();
+	Player* p = k;	
+	//Knight* k2 = (Knight*)p;
+	
+	// dynamic_cast : 상속 관계에서의 안전 변환 
+	// 다형성을 활용하는 방식
+	// RTTI (RunTime Type Information)
+	
+	// 가상함수 테이블 정보를 사용하기 때문에 반드시 가상함수가 적어도 하나 있어야 함
+	// 상속 관계에서의 안전 변환 가능(static cast는 위험..)
+	// 근데, 효율이 조금 낮아져서 static cast를 아예 안 사용하는 건 아님(성능에 민감할 땐 사용)
+	Knight* k2 = dynamic_cast<Knight*>(p);
+	
+	save("cpp.cpp");
+}
+
+
+==========================================================================
+fileName ::, 2024-07-23 화요일 오후 9:12:59
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+// 캐스팅 4총사(앞 두개가 핵심이지만, 면접에 자주 나옴)
+// static_cast << 
+// dynamic_cast <<
+// const_cast
+// reinterpret_cast
+
+// C 스타일 캐스팅
+// 동일한 문법인데도 어디서 사용하냐에 따라 완전히 달라지기 때문에 위험!
+
+class Player
+{
+public:
+	Player() { };
+	virtual ~Player() { };
+};
+
+class Knight : public Player
+{
+public:
+	Knight() { }
+	virtual ~Knight() { }
+};
+
+class Archer : public Player
+{
+
+};
+
+int main()
+{
+	// static_cast : 타입 원칙에 비춰볼 때 상식적인 캐스팅만 허용해준다
+	// 1) int <-> float
+	// 2) Player* -> Knight
+
+	int hp = 100;
+	int maxHp = 200;
+	float ratio = (float)hp / maxHp;
+
+	Knight* k = new Knight();
+	Player* p = k;	
+	//Knight* k2 = (Knight*)p;
+	
+	// dynamic_cast : 상속 관계에서의 안전 변환 
+	// 다형성을 활용하는 방식
+	// RTTI (RunTime Type Information)
+	
+	// 가상함수 테이블 정보를 사용하기 때문에 반드시 가상함수가 적어도 하나 있어야 함
+	// 상속 관계에서의 안전 변환 가능(static cast는 위험..)
+	// 근데, 효율이 조금 낮아져서 static cast를 아예 안 사용하는 건 아님(성능에 민감할 땐 사용)
+	Knight* k2 = dynamic_cast<Knight*>(p);
+	
+
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// 실전에서 잘 쓰이지 않는 캐스팅 - 이런 내용이 있다는 것만 알고 넘어가자..
+	
+	// const_cast
+	const char* name = "Haneul";
+	char* name2 = const_cast<char*>(name);
+	// 실전에서 거의 활용하지 않음!!!
+
+	// reinterpret_cast
+	// 위험하고, 강력한 형태
+	// re-interpert 다시 생각하다?
+	// 포인터 -> 전혀 관계없는 다른 타입으로 변환
+	_int64 address = reinterpret_cast<_int64>(k);
+
+
+	save("cpp.cpp");
+}
