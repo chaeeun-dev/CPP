@@ -1,0 +1,305 @@
+
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+int main()
+{
+	save("cpp.cpp");
+}
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+// 얕은 복사 vs 깊은 복사
+
+class Knight
+{
+public:
+	int _hp = 100;
+};
+
+int main()
+{
+	Knight k1;
+	k1._hp = 200;
+
+	Knight k2 = k1;		// 복사 생성이 됨
+
+	save("cpp.cpp");
+}
+
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+// 얕은 복사 vs 깊은 복사
+
+class Knight
+{
+public:
+	Knight()	// 기본 생성자
+	{
+
+	}
+	Knight(const Knight& k)		// 복사 생성자
+	{
+		_hp = k._hp;
+	}
+
+	void operator=(const Knight& k)		// 복사 연산자
+	{
+		_hp = k._hp;
+	}
+public:
+	int _hp = 100;
+};
+
+int main()
+{
+	Knight k1;		// 기본 생성자
+	k1._hp = 200;
+
+	Knight k2 = k1;		// 복사 생성자
+
+	Knight k3;	// 기본 생성자
+	k3 = k1;	// 복사 연산자
+
+	save("cpp.cpp");
+}
+
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+// 얕은 복사 vs 깊은 복사
+
+class Pet
+{
+public:
+	// 생성자
+	Pet() { std::cout << "Pet()" << std::endl; }		
+	// 소멸자
+	~Pet() { std::cout << "~Pet()" << std::endl; }	
+
+	// 복사 생성자
+	Pet(const Pet& pet) { std::cout << "Pet(const Pet& pet)" << std::endl; }
+};
+
+class Knight
+{
+public:
+	Knight()	// 기본 생성자
+	{
+
+	}
+	Knight(const Knight& k)		// 복사 생성자
+	{
+		_hp = k._hp;
+	}
+
+	void operator=(const Knight& k)		// 복사 연산자
+	{
+		_hp = k._hp;
+	}
+public:
+	int _hp = 100;
+	Pet _pet;
+};
+
+int main()
+{
+	Knight k1;		// 기본 생성자
+	k1._hp = 200;
+
+	Knight k2 = k1;		// 복사 생성자
+	
+	// Knight에 대한 기본 복사 생성을 하려고 하면,
+	// 그 멤버 변수인 _pet까지도 복사생성됨
+
+	save("cpp.cpp");
+}
+
+
+
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+// 얕은 복사 vs 깊은 복사
+
+class Pet
+{
+public:
+	// 생성자
+	Pet() { std::cout << "Pet()" << std::endl; }		
+	// 소멸자
+	~Pet() { std::cout << "~Pet()" << std::endl; }	
+
+	// 복사 생성자
+	Pet(const Pet& pet) { std::cout << "Pet(const Pet& pet)" << std::endl; }
+};
+
+class Knight
+{
+public:
+	Knight()	// 기본 생성자
+	{
+
+	}
+	//Knight(const Knight& k)		// 복사 생성자
+	//{
+	//	_hp = k._hp;
+	//}
+
+	//void operator=(const Knight& k)		// 복사 연산자
+	//{
+	//	_hp = k._hp;
+	//}
+public:
+	int _hp = 100;
+	Pet _pet;
+};
+
+int main()
+{
+	Knight k1;		// 기본 생성자
+	k1._hp = 200;
+
+	Knight k2 = k1;
+	
+	// Knight에 대한 기본 복사 생성을 하려고 하면(컴파일러가 만든 복사 생성자),
+	// 그 멤버 변수인 _pet까지도 복사생성자를 호출함
+
+	save("cpp.cpp");
+}
+
+// 출력 결과
+Pet()
+Pet(const Pet& pet)
+~Pet()
+~Pet()
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+// 얕은 복사 vs 깊은 복사
+
+class Pet
+{
+public:
+	// 생성자
+	Pet() { std::cout << "Pet()" << std::endl; }		
+	// 소멸자
+	~Pet() { std::cout << "~Pet()" << std::endl; }	
+
+	// 복사 생성자
+	Pet(const Pet& pet) { std::cout << "Pet(const Pet& pet)" << std::endl; }
+};
+
+class Knight
+{
+public:
+	Knight()	// 기본 생성자
+	{
+		_pet = new Pet();
+	}
+	
+	~Knight()
+	{
+		delete _pet;
+	}
+
+	Knight(const Knight& k)		// 복사 생성자
+	{
+		_hp = k._hp;
+		_pet = new Pet();	// 동일한 참조값을 가리키지 않도록!
+	}
+
+public:
+	int _hp = 100;
+	Pet* _pet;		// 이렇게 포인터로 사용했을 때가 문제!!!
+};
+
+int main()
+{
+	Knight k1;		// 기본 생성자
+	k1._hp = 200;
+
+	Knight k2 = k1;
+
+	save("cpp.cpp");
+}
+
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+// 얕은 복사 vs 깊은 복사
+// 핵심 - 포인터를 사용할 때 같은 곳을 가리키지 않게 하자!!!
+class Pet
+{
+public:
+	// 생성자
+	Pet() { std::cout << "Pet()" << std::endl; }		
+	// 소멸자
+	~Pet() { std::cout << "~Pet()" << std::endl; }	
+
+	// 복사 생성자
+	Pet(const Pet& pet) { std::cout << "Pet(const Pet& pet)" << std::endl; }
+};
+
+class Knight
+{
+public:
+	Knight()	// 기본 생성자
+	{
+		_pet = new Pet();
+	}
+	
+	~Knight()
+	{
+		delete _pet;
+	}
+
+	Knight(const Knight& k)		// 복사 생성자
+	{
+		_hp = k._hp;
+		_pet = new Pet();	// 동일한 참조값을 가리키지 않도록!
+	}
+
+public:
+	int _hp = 100;
+	Pet* _pet;		// 이렇게 포인터로 사용했을 때가 문제!!!
+};
+
+int main()
+{
+	Knight k1;		// 기본 생성자
+	k1._hp = 200;
+
+	Knight k2 = k1;
+
+	save("cpp.cpp");
+}
