@@ -1,0 +1,94 @@
+#include <iostream>
+#include "save.h"
+
+// 프로그램이 뻗었다 -> 98% NULL 크래시
+// NULL 크래시
+
+class Player
+{
+public:
+	int hp = 0;
+};
+
+Player* FindPlayer(int id)
+{
+	// Player 찾는 루틴
+	return nullptr;	// 못 찾으면 널포인터 반환
+}
+
+int main()
+{
+	Player* p = FindPlayer(100);
+	//p->hp = 100;	// 오류 발생 - 앞 코드가 nullptr이니까...
+
+	save("cpp.cpp");
+}
+
+
+#include <iostream>
+#include "save.h"
+
+// 프로그램이 뻗었다 -> 95% 이상 NULL 크래시
+// NULL 크래시
+
+class Player
+{
+public:
+	int hp = 0;
+};
+
+Player* FindPlayer(int id)
+{
+	// Player 찾는 루틴
+	return nullptr;	// 못 찾으면 널포인터 반환
+}
+
+void Test(Player* p)
+{
+	if (p == nullptr)	// *널 체크 중요* 무조건 해야하는 작업 
+		return;		// 아무것도 반환하지 않는다!
+
+	p->hp = 10;
+}
+
+int main()
+{
+	Player* p = FindPlayer(100);
+	Test(nullptr);	// Test()에서 nullptr 체크를 하고, return을 했으니 오류 발생X
+
+	save("cpp.cpp");
+}
+
+
+
+==========================================================================
+fileName ::, 2024-07-23 화요일 오후 11:48:39
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+// 1) NULL 크래시 (95%)
+// 2) 정수 오버플로우(언더플로우) (0.001%)
+// 3) 메모리 릭 (0.1%) - 이건 감사한 상황.. 찾기 쉬움
+// 4) 메모리 오염 - 가장 끔찍한 상황, 제일 찾기 어려움
+// - 캐스팅 <- 가장 빈번함 
+// - 버퍼 오버플로우
+// - User-After-Free <- 지뢰와 같다.. 
+
+// 조언
+// 내가 만든 코드를 의심하지 말고, 초반에는 굴러가기만 하면 장땡이라고 생각하자
+// 너무 깊게 파고 들지 말자...
+
+
+// 디버깅
+// 중단점, F10 & F11, 호출 스택으로 어디까지 진행했는지 확인
+// 뒤로 돌아가기 <- 드래그 & 드랍하면 됨, 조사식
+// 가장 중요한 것은 감! 버그를 빨리 찾는 능력 기르기 
+// 직접 실행해보기
+
+int main()
+{
+	save("cpp.cpp");
+}
