@@ -1,14 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ce011\\Downloads\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\",
+  "WorkspaceRootPath": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D33AA04B-2DE8-4744-A423-0749F2BEA004}|Exercise_1\\Exercise_1.vcxproj|C:\\Users\\ce011\\Downloads\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_1\\Knight.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D33AA04B-2DE8-4744-A423-0749F2BEA004}|Exercise_1\\Exercise_1.vcxproj|solutionrelative:Exercise_1\\Knight.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D33AA04B-2DE8-4744-A423-0749F2BEA004}|Exercise_1\\Exercise_1.vcxproj|D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_1\\Exercise_1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D33AA04B-2DE8-4744-A423-0749F2BEA004}|Exercise_1\\Exercise_1.vcxproj|solutionrelative:Exercise_1\\Exercise_1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D33AA04B-2DE8-4744-A423-0749F2BEA004}|Exercise_1\\Exercise_1.vcxproj|C:\\Users\\ce011\\Downloads\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_1\\Exercise_1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D33AA04B-2DE8-4744-A423-0749F2BEA004}|Exercise_1\\Exercise_1.vcxproj|solutionrelative:Exercise_1\\Exercise_1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D33AA04B-2DE8-4744-A423-0749F2BEA004}|Exercise_1\\Exercise_1.vcxproj|D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_1\\Knight.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D33AA04B-2DE8-4744-A423-0749F2BEA004}|Exercise_1\\Exercise_1.vcxproj|solutionrelative:Exercise_1\\Knight.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,26 +34,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Knight.cpp",
-              "DocumentMoniker": "C:\\Users\\ce011\\Downloads\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_1\\Knight.cpp",
+              "DocumentMoniker": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_1\\Knight.cpp",
               "RelativeDocumentMoniker": "Exercise_1\\Knight.cpp",
-              "ToolTip": "C:\\Users\\ce011\\Downloads\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_1\\Knight.cpp",
+              "ToolTip": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_1\\Knight.cpp",
               "RelativeToolTip": "Exercise_1\\Knight.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAAkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-07-23T15:19:17.108Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Exercise_1.cpp",
-              "DocumentMoniker": "C:\\Users\\ce011\\Downloads\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_1\\Exercise_1.cpp",
+              "DocumentMoniker": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_1\\Exercise_1.cpp",
               "RelativeDocumentMoniker": "Exercise_1\\Exercise_1.cpp",
-              "ToolTip": "C:\\Users\\ce011\\Downloads\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_1\\Exercise_1.cpp",
+              "ToolTip": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_1\\Exercise_1.cpp",
               "RelativeToolTip": "Exercise_1\\Exercise_1.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-07-23T15:19:13.559Z",
               "EditorCaption": ""
