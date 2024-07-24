@@ -13,7 +13,7 @@ public:
 	bool IsDead();
 
 public:
-	int _hp;
+	long long _hp;
 	int _attack;
 };
 

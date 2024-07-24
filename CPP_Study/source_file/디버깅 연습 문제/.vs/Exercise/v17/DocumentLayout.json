@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5DEF8B5B-A540-444B-ADD1-840A4B829884}|Exercise_3\\Exercise_3.vcxproj|D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_3\\Exercise_3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5DEF8B5B-A540-444B-ADD1-840A4B829884}|Exercise_3\\Exercise_3.vcxproj|solutionrelative:Exercise_3\\Exercise_3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{81D96685-8454-4372-919F-CE6BAB58F010}|Exercise_4\\Exercise_4.vcxproj|D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_4\\Exercise_4.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{81D96685-8454-4372-919F-CE6BAB58F010}|Exercise_4\\Exercise_4.vcxproj|solutionrelative:Exercise_4\\Exercise_4.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5DEF8B5B-A540-444B-ADD1-840A4B829884}|Exercise_3\\Exercise_3.vcxproj|D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_3\\Knight.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5DEF8B5B-A540-444B-ADD1-840A4B829884}|Exercise_3\\Exercise_3.vcxproj|solutionrelative:Exercise_3\\Knight.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{81D96685-8454-4372-919F-CE6BAB58F010}|Exercise_4\\Exercise_4.vcxproj|D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_4\\Knight.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{81D96685-8454-4372-919F-CE6BAB58F010}|Exercise_4\\Exercise_4.vcxproj|solutionrelative:Exercise_4\\Knight.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5DEF8B5B-A540-444B-ADD1-840A4B829884}|Exercise_3\\Exercise_3.vcxproj|D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_3\\Knight.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5DEF8B5B-A540-444B-ADD1-840A4B829884}|Exercise_3\\Exercise_3.vcxproj|solutionrelative:Exercise_3\\Knight.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{81D96685-8454-4372-919F-CE6BAB58F010}|Exercise_4\\Exercise_4.vcxproj|D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_4\\Knight.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{81D96685-8454-4372-919F-CE6BAB58F010}|Exercise_4\\Exercise_4.vcxproj|solutionrelative:Exercise_4\\Knight.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,41 +38,41 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Exercise_4.cpp",
+              "DocumentMoniker": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_4\\Exercise_4.cpp",
+              "RelativeDocumentMoniker": "Exercise_4\\Exercise_4.cpp",
+              "ToolTip": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_4\\Exercise_4.cpp",
+              "RelativeToolTip": "Exercise_4\\Exercise_4.cpp",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAgAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-07-24T12:35:09.004Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Knight.h",
-              "DocumentMoniker": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_3\\Knight.h",
-              "RelativeDocumentMoniker": "Exercise_3\\Knight.h",
-              "ToolTip": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_3\\Knight.h",
-              "RelativeToolTip": "Exercise_3\\Knight.h",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "DocumentMoniker": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_4\\Knight.h",
+              "RelativeDocumentMoniker": "Exercise_4\\Knight.h",
+              "ToolTip": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_4\\Knight.h",
+              "RelativeToolTip": "Exercise_4\\Knight.h",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-07-24T12:27:59.195Z",
+              "WhenOpened": "2024-07-24T12:35:09.995Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Knight.cpp",
-              "DocumentMoniker": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_3\\Knight.cpp",
-              "RelativeDocumentMoniker": "Exercise_3\\Knight.cpp",
-              "ToolTip": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_3\\Knight.cpp",
-              "RelativeToolTip": "Exercise_3\\Knight.cpp",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAABsAAAABAAAA",
+              "DocumentMoniker": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_4\\Knight.cpp",
+              "RelativeDocumentMoniker": "Exercise_4\\Knight.cpp",
+              "ToolTip": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_4\\Knight.cpp",
+              "RelativeToolTip": "Exercise_4\\Knight.cpp",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAABQAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-07-24T12:27:58.69Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Exercise_3.cpp",
-              "DocumentMoniker": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_3\\Exercise_3.cpp",
-              "RelativeDocumentMoniker": "Exercise_3\\Exercise_3.cpp",
-              "ToolTip": "D:\\University\\2024_SummerVacation\\CPP\\CPP_Study\\source_file\\\uB514\uBC84\uAE45 \uC5F0\uC2B5 \uBB38\uC81C\\Exercise_3\\Exercise_3.cpp",
-              "RelativeToolTip": "Exercise_3\\Exercise_3.cpp",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-07-24T12:27:58.182Z",
+              "WhenOpened": "2024-07-24T12:35:09.507Z",
               "EditorCaption": ""
             }
           ]
