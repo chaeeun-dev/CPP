@@ -21,7 +21,7 @@ Knight::~Knight()
 void Knight::AddHp(int value)
 {
 	_hp += value;
-	if (_hp < 0)
+	if (_hp <= 0)
 		_hp = 0;
 	if (_hp > _maxHp)
 		_hp = _maxHp;
@@ -62,5 +62,8 @@ void Knight::OnDamaged(Knight* attacker)
 	AddHp(-damage);
 
 	// 반격!
+	// 이 코드에서 문제 발생함!!!
+	// k1의 hp가 0이라서 문제인가??
 	attacker->OnDamaged(this);	
+	//k1->OnDamaged(k2);
 }
