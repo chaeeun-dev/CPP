@@ -10,6 +10,11 @@ using namespace std;
 // 그런데 또 프로그램이 크래시나는 문제가 발생하고 있습니다.
 // 원인을 파악하고 의도대로 동작하게 수정해주세요!
 
+// 내가 해결한 방법
+// int ratio =_maxHp / _hp; 코드에서 _maxHp와 _hp 모두 int 값이기 때문에
+// 몫이 제대로 나오지 않게 되므로, int 값을 double로 변환하도록 코드를 수정헸다.
+// int ratio =_maxHp / (double)_hp;
+
 int main()
 {
 	Knight* k1 = new Knight();
