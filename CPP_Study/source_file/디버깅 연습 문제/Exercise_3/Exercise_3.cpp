@@ -11,6 +11,12 @@ using namespace std;
 // 왜일까요? 죽었다는 로그가 뜨지 않습니다.
 // 문제 원인을 파악해서 수정해주세요!
 
+// 내가 해결한 방법
+// Knight가 죽었는지 확인하는 IsDead() 함수에서
+// return (_hp == 0); 이렇게 bool 값을 반환했는데, 
+// 이 코드는 _hp가 0일 때만 true를 반환하기 때문에
+// return (_hp <= 0); 0 이하일 때 true를 return 하도록 코드를 수정했다.
+
 int main()
 {
 	Knight* k1 = new Knight();
