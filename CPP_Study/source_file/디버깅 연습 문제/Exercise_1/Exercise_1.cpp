@@ -16,6 +16,11 @@ using namespace std;
 // - 공격력이 음수로 설정된 원인을 찾아주세요
 // - 2번 기사의 공격력이 기본값(10)으로 설정되길 희망합니다.
 
+
+// 내가 해결한 방법
+// Knight::Knight(int hp) : _hp(hp) 생성자 부분에서 attack 변수를 초기화 하는 코드가 없어서
+//Knight::Knight(int hp) : _hp(hp), _attack(10) 초기화 하는 부분을 추가했다. 
+
 int main()
 {
 	Knight* k1 = new Knight();
