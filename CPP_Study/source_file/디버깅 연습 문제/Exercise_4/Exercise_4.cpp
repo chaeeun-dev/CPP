@@ -17,6 +17,10 @@ using namespace std;
 // hp 변수의 자료형이 int인데, 100만이라는 큰 값을 계속 더해서 정수 오버플로우가 발생했다고 판단했다,
 // 따라서 큰 값을 담을 수 있는 long long으로 자료형을 변경했다.
 
+// 답안
+// maxHp값을 멤버 변수에 추가하여 이 값을 넘어가지 않도록 설정한다.
+// if (hp >= maxHp) hp = maxHp;
+
 int main()
 {
 	Knight* k1 = new Knight();

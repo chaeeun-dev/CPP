@@ -21,6 +21,8 @@ Knight::~Knight()
 void Knight::AddHp(int value)
 {
 	_hp += value;
+	if (_hp > _maxHp)
+		_hp = _maxHp;
 }
 
 bool Knight::IsDead()
