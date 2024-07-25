@@ -15,6 +15,10 @@ using namespace std;
 // 몫이 제대로 나오지 않게 되므로, int 값을 double로 변환하도록 코드를 수정헸다.
 // int ratio =_maxHp / (double)_hp;
 
+// 답안
+// int percentage 변수를 사용
+// int percentage = _hp / (float)_maxHp * 100;
+// percentage가 50보다 작거나 같으면 damage 2배로 설정
 int main()
 {
 	Knight* k1 = new Knight();
