@@ -35,6 +35,24 @@ public:
 		}
 	}
 
+	Node* GetNode(int index)
+	{
+		Node* node = _head->next;
+		if (node == _tail)	// 연결리스트가 비었을 때
+			return nullptr;
+		
+		// 이렇게 찾는 과정은 느린데, 중간 삽입 삭제가 빠르다고 하는 이유?
+		// 면접에서 질문하면 다 낚임..
+		// 특정 노드를 알고 있으면 빠르다!
+		for (int i = 0; i < index; ++i)
+		{
+			if (node == _tail->prev)
+				return nullptr;
+
+			node = node->next;
+		}
+	}
+
 	void Print()
 	{
 		Node* node = _head->next;
@@ -43,6 +61,7 @@ public:
 			std::cout << node->data << std::endl;
 			node = node->next;
 		}
+		std::cout << std::endl;
 	}
 
 	//	[dummy] <->[1]<->[2]<->[3]<-> [dummy]
@@ -90,6 +109,32 @@ public:
 		return node;
 	}
 
+
+	// 삽입 삭제가 항상 빠른 건 아니다.
+	// 특정 위치를 기억하고 있을 때 빠른 것!
+	// 연결리스트에서 가장 핵심은 remove와 add
+	
+	//		[node]
+	// [prev]<->[pos]  
+	void Insert(Node* posNode, int data)
+	{
+		Node* node = new Node(data);
+		Node* prevNode = posNode->prev;
+
+		prevNode->next = node;
+		node->prev = prevNode;
+		node->next = posNode;
+		posNode->prev = node;
+	}
+
+	// [prev]<->[node]<->[next] 여기서 prev와 next를 이어주면 됨 
+	void Remove(Node* node)
+	{
+		Node* prevNode = node->prev;
+		Node* nextNode = node->next;
+		prevNode->next = nextNode;
+		nextNode->prev = prevNode;
+	}
 private:
 	Node* _head = nullptr;
 	Node* _tail = nullptr;
