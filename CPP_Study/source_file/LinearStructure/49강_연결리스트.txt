@@ -1,0 +1,63 @@
+
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+class Node
+{
+public:
+
+};
+
+int main()
+{
+
+	save("cpp.cpp");
+}
+
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+class Node
+{
+public:
+	Node(int data) : data(data) { }
+public:
+	int data;
+	Node* prev = nullptr;
+	Node* next = nullptr;	// Node next와 다름! 
+	// 포인터 : 하나의 주소값에 불과, 이 주소를 타고 갔더니 그 타입이 있다는 주장!
+};
+
+int main()
+{
+	Node* n1 = new Node(1);
+	Node* n2 = new Node(2);
+	Node* n3 = new Node(3);
+	Node* n4 = new Node(4);
+	Node* n5 = new Node(5);
+
+	// 단방향보다 양방향으로 만드는 게 더 일반적임(중간에 삽입 삭제하기 수월)
+	// [1]->[2]->[3]->[4]->[5]
+	// [Head]
+	n1->next = n2;
+	n2->prev = n1;
+
+	n2->next = n3;
+	n3->prev = n2;
+
+	n3->next = n4;
+	n4->prev = n3;
+
+	n4->next = n5;
+	n5->prev = n4;
+
+	save("cpp.cpp");
+}
