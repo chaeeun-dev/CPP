@@ -52,6 +52,13 @@ void Knight::PrintInfo()
 	cout << "ATT: " << _attack << endl;
 }
 
+// 추가 함수 구현
+void Knight::CounterAttack(Knight* CountAttacker, Knight* Attacker)
+{
+	int damage = CountAttacker->GetAttackDamage();
+	Attacker->AddHp(-damage);
+}
+
 void Knight::OnDamaged(Knight* attacker)
 {
 	if (attacker == nullptr)
@@ -63,7 +70,8 @@ void Knight::OnDamaged(Knight* attacker)
 
 	// 반격!
 	// 이 코드에서 문제 발생함!!!
-	// k1의 hp가 0이라서 문제인가??
-	attacker->OnDamaged(this);	
-	//k1->OnDamaged(k2);
+	// k1의 hp가 0이라서 문제인가?? 아닌 것 같음...
+	// 재귀함수 문제인가? 일단 반격하는 함수를 만들어보자
+	//attacker->OnDamaged(this);	
+	CounterAttack(this, attacker);
 }

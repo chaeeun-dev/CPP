@@ -15,7 +15,7 @@ public:
 	int GetAttackDamage();
 
 	void OnDamaged(Knight* attacker);
-
+	void CounterAttack(Knight* CountAttacker, Knight* Attacker);
 public:
 	int _hp;
 	int _maxHp;
