@@ -10,6 +10,8 @@ int main()
 {
 	::srand(static_cast<uint32>(time(nullptr)));
 
+	board.Init(25);
+
 	while (true)
 	{
 		// 입력

@@ -34,8 +34,20 @@ void Board::Render()
 	}
 }
 
+// Binary Tree 미로 생성 알고리즘
+// - 책 Mazes For Programmers
 void Board::GenerateMap()
 {
+	for (int32 y = 0; y < 25; ++y)
+	{
+		for (int32 x = 0; x < 25; ++x)
+		{
+			if (x % 2 == 0 || y % 2 == 0)
+				_tile[y][x] = TileType::WALL;
+			else
+				_tile[y][x] = TileType::EMPTY;
+		}
+	}
 }
 
 TileType Board::GetTileType(Pos pos)
