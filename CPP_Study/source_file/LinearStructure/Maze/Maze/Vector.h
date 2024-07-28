@@ -3,11 +3,11 @@
 
 class Vector
 {
-	using T = int;
+	using T = Pos;
 
 public:
 	//  총 용량을 할당
-	explicit Vector(int capacity = 100) : _capacity(capacity)
+	explicit Vector()
 	{
 		//_buffer = new T[capacity];
 	}

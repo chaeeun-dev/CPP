@@ -13,6 +13,8 @@ enum class TileType
 	WALL
 };
 
+class Player;	// 전방선언!! include "Player.h"라고 생각한 거 반성하자..
+
 class Board
 {
 public:
@@ -20,7 +22,7 @@ public:
 	~Board();
 
 	// 가장 핵심 함수는 Init과 Rende 함수!
-	void Init(int32 size);	// 초기화 함수
+	void Init(int32 size, Player* player);	// 초기화 함수
 	void Render();
 
 	void GenerateMap();
@@ -33,5 +35,6 @@ public:
 private:
 	TileType	_tile[BOARD_MAX_SIZE][BOARD_MAX_SIZE];
 	int32		_size = 0;
+	Player*		_player = nullptr;
 };
 
