@@ -24,9 +24,15 @@
     <ClCompile Include="List.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="Vector.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="List.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
