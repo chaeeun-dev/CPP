@@ -61,6 +61,13 @@ public:
 		return _buffer[_size - 1];
 	}
 	
+	void resize(int size)	// 간단하게 구현함
+	{
+		// TODO
+		reserve(size);
+		_size = size;
+	}
+	
 	void reserve(int capacity)
 	{
 		if (_capacity >= capacity)	// 이전의 용량이 더 크거나 같으면
