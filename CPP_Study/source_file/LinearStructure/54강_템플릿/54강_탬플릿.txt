@@ -1,0 +1,226 @@
+
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+// 탬플릿을 사용하는 이유?
+// 정말 어렵지만 알아두면 정말 편함
+
+// 함수 탬플릿
+// 클래스 탬플릿
+
+template<typename T>
+void Print(T a)
+{
+	std::cout << a << std::endl;
+}
+
+// 여러 개 사용해도 됨
+template<typename T1, typename T2>
+void Print(T1 a, T2 b)
+{
+	std::cout << a << " " << b << std::endl;
+}
+
+// template 특수화 - 특정 자료형(int)일 때만 원하는 함수를 호출하고 싶을 때
+template <>
+void Print(int a)
+{
+	std::cout << "int" << std::endl;
+}
+
+int main()
+{
+	Print(1);	// 사실 Print<int>(1); 이렇게 <int>가 생략됨
+	Print(3.14f);	// Print<flaot>(3.14f);
+	Print("Hello World!");	// Print<const char>("Hello World!");
+
+	// 여러가지 버전을 통용하는 함수가 만들어지는 게 아님!!!
+	// 각기 다른, 별도의 함수를 만들어 주는 것임!!!
+	// 함수의 개수가 늘어나는 것
+
+	save("cpp.cpp");
+}
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+// 탬플릿을 사용하는 이유?
+// 정말 어렵지만 알아두면 정말 편함
+
+// 함수 탬플릿
+// 클래스 탬플릿
+
+template <typename T>	// 어떤 타입을 반환할지 모를 때 사용
+class RandomBox
+{
+public:
+	T GetRandomData()
+	{
+		int index = rand() % 100;
+		return data[index];
+	}
+
+public:
+	T data[100];
+};
+
+int main()
+{
+	RandomBox<int> rb1;
+	RandomBox<float> rb2;
+	// 자료형에 따라 별도의 클래스가 생성이 된 것!
+	// 아예 관련이 없는 별개의 클래스임!
+	save("cpp.cpp");
+}
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+// 탬플릿을 사용하는 이유?
+// 정말 어렵지만 알아두면 정말 편함
+
+// 함수 탬플릿
+// 클래스 탬플릿
+
+template <typename T = int, int SIZE = 100>	// 어떤 타입을 반환할지 모를 때 사용
+class RandomBox
+{
+public:
+	T GetRandomData()
+	{
+		int index = rand() % SIZE;
+		return data[index];
+	}
+
+public:
+	T data[SIZE];
+};
+
+int main()
+{
+	RandomBox<int, 100> rb1;
+	RandomBox<float, 200> rb2;
+	// 자료형에 따라 별도의 클래스가 생성이 된 것!
+	// 아예 관련이 없는 별개의 클래스임!
+	save("cpp.cpp");
+}
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+// 탬플릿을 사용하는 이유?
+// 정말 어렵지만 알아두면 정말 편함
+
+// 함수 탬플릿
+// 클래스 탬플릿
+
+template<typename T = int, int SIZE = 100>	// 어떤 타입을 반환할지 모를 때 사용
+class RandomBox
+{
+public:
+	T GetRandomData()
+	{
+		int index = rand() % SIZE;
+		return data[index];
+	}
+
+public:
+	T data[SIZE];
+};
+
+// 특수화
+template<>
+class RandomBox<int>
+{
+public:
+	int GetRandomData()
+	{
+		int index = rand() % 100;
+		return data[index];
+	}
+
+public:
+	int data[100];
+};
+
+int main()
+{
+	RandomBox<int, 100> rb1;
+	rb1.GetRandomData();
+	RandomBox<float, 200> rb2;
+	// 자료형에 따라 별도의 클래스가 생성이 된 것!
+	// 아예 관련이 없는 별개의 클래스임!
+	save("cpp.cpp");
+}
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+
+// 탬플릿을 사용하는 이유?
+// 정말 어렵지만 알아두면 정말 편함
+// C++의 끝판왕!!!
+
+// 런타임이 아닌 컴파일 타임에 결정되는 문법임
+// 사용하지 않으면 아예 만들어지지 않음,
+// 틀린 문법이라도 사용하지 않으면 오류 발생하지 않음
+// 헤더 파일에 다 때려박으면 됨 - h랑 cpp 분리하지 말고
+
+// 함수 탬플릿
+// 클래스 탬플릿
+
+// - 템플릿 기본 문법
+// - 특수화
+template<typename T = int, int SIZE = 100>	// 어떤 타입을 반환할지 모를 때 사용
+class RandomBox
+{
+public:
+	T GetRandomData()
+	{
+		int index = rand() % SIZE;
+		return data[index];
+	}
+
+public:
+	T data[SIZE];
+};
+
+// 특수화
+template<>
+class RandomBox<int>
+{
+public:
+	int GetRandomData()
+	{
+		int index = rand() % 100;
+		return data[index];
+	}
+
+public:
+	int data[100];
+};
+
+int main()
+{
+	RandomBox<int, 100> rb1;
+	rb1.GetRandomData();
+	RandomBox<float, 200> rb2;
+	// 자료형에 따라 별도의 클래스가 생성이 된 것!
+	// 아예 관련이 없는 별개의 클래스임!
+	save("cpp.cpp");
+}

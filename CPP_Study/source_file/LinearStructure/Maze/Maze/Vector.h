@@ -1,10 +1,10 @@
 #pragma once
 #include <assert.h>
 
+template<typename T>	// 템플릿 문법
 class Vector
 {
-	using T = Pos;
-
+	
 public:
 	//  총 용량을 할당
 	explicit Vector()

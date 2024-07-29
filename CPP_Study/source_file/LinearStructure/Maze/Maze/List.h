@@ -1,43 +1,43 @@
 #pragma once
 #include <iostream>
 
+template<typename T>
 class Node
 {
-	// typedef int T;	// 옛날 문법
-	using T = int;
 public:
 	Node(int data) : data(data), prev(nullptr), next(nullptr) { }
 public:
 	T data;
-	Node* prev;
-	Node* next;
+	Node<T>* prev;
+	Node<T>* next;
 };
 
+template<typename T>
 class List
 {
 public:
 	List()
 	{
-		_head = new Node(0);	// 여기서 data는 중요하지 않음
-		_tail = new Node(0);
+		_head = new Node<T>(0);	// 여기서 data는 중요하지 않음
+		_tail = new Node<T>(0);
 		_head->next = _tail;
 		_tail->prev = _head;
 	}
 
 	~List()	// 노드 지워주는 부분
 	{
-		Node* node = _head;
+		Node<T>* node = _head;
 		while (node)
 		{
-			Node* deleteNode = node;
+			Node<T>* deleteNode = node;
 			node = node->next;	// 노드를 한 칸씩 이동
 			delete deleteNode;
 		}
 	}
 
-	Node* GetNode(int index)
+	Node<T>* GetNode(int index)
 	{
-		Node* node = _head->next;
+		Node<T>* node = _head->next;
 		if (node == _tail)	// 연결리스트가 비었을 때
 			return nullptr;
 		
@@ -55,7 +55,7 @@ public:
 
 	void Print()
 	{
-		Node* node = _head->next;
+		Node<T>* node = _head->next;
 		while (node != _tail)
 		{
 			std::cout << node->data << std::endl;
@@ -66,7 +66,7 @@ public:
 
 	//	[dummy] <->[1]<->[2]<->[3]<-> [dummy]
 	//  [head]						   [tail]
-	Node* AddAtHead(int data)
+	Node<T>* AddAtHead(int data)
 	{
 		// dummy 노드가 없을 때
 		//Node* node = new Node(data);
@@ -85,8 +85,8 @@ public:
 		//}
 
 		// dummy 노드 사용 - if else문을 안 써도 돼서 깔끔함
-		Node* node = new Node(data);
-		Node* nextNode = _head->next;
+		Node<T>* node = new Node(data);
+		Node<T>* nextNode = _head->next;
 
 		node->next = nextNode;
 		nextNode->prev = node;
@@ -96,10 +96,10 @@ public:
 		return node;
 	}
 
-	Node* AddAtTail(int data)
+	Node<T>* AddAtTail(int data)
 	{
-		Node* node = new Node(data);
-		Node* prevNode = _tail->prev;
+		Node<T>* node = new Node(data);
+		Node<T>* prevNode = _tail->prev;
 
 		prevNode->next = node;
 		node->prev = prevNode;
@@ -116,10 +116,10 @@ public:
 	
 	//		[node]
 	// [prev]<->[pos]  
-	void Insert(Node* posNode, int data)
+	void Insert(Node<T>* posNode, int data)
 	{
-		Node* node = new Node(data);
-		Node* prevNode = posNode->prev;
+		Node<T>* node = new Node(data);
+		Node<T>* prevNode = posNode->prev;
 
 		prevNode->next = node;
 		node->prev = prevNode;
@@ -128,15 +128,15 @@ public:
 	}
 
 	// [prev]<->[node]<->[next] 여기서 prev와 next를 이어주면 됨 
-	void Remove(Node* node)
+	void Remove(Node<T>* node)
 	{
-		Node* prevNode = node->prev;
-		Node* nextNode = node->next;
+		Node<T>* prevNode = node->prev;
+		Node<T>* nextNode = node->next;
 		prevNode->next = nextNode;
 		nextNode->prev = prevNode;
 	}
 private:
-	Node* _head = nullptr;
-	Node* _tail = nullptr;
+	Node<T>* _head = nullptr;
+	Node<T>* _tail = nullptr;
 };
 
