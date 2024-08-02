@@ -8,20 +8,6 @@ Player player;
 
 int main()
 {
-	List<int> li;
-
-	auto node2 = li.GetNode(0);
-
-	li.AddAtHead(1);
-	li.AddAtHead(2);
-
-	auto node3 = li.GetNode(1);
-
-	li.AddAtHead(3);
-	li.Print();
-
-	auto node= li.GetNode(3);
-
 	::srand(static_cast<unsigned>(time(nullptr)));
 
 	board.Init(25, &player);

@@ -88,12 +88,7 @@ void Player::CalculatePath_RightHand()
 void Player::CalculatePath_BFS()
 {
 	Pos pos = _pos;
-
-	_path.clear();
-	_path.push_back(pos);
-
-	// 목적지
-	Pos dest = _board->GetExitPos();
+	Pos dest = _board->GetExitPos();	// 목적지
 
 	Pos front[4] =
 	{
@@ -103,4 +98,40 @@ void Player::CalculatePath_BFS()
 		Pos(0, 1), // RIGHT
 	};
 
+	_path.clear();
+	_path.push_back(pos);
+
+	const int32 size = _board->GetSize();
+	vector<vector<bool>> discovered(size, vector<bool>(size, false));
+	// discovered[y][x] ? 
+
+	// 예약 시스템
+	queue<Pos> q;
+	q.push(pos);
+	discovered[pos.y][pos.x] = true;
+
+	while (!q.empty())	// 큐가 안 비었으면
+	{
+		pos = q.front();
+		q.pop();
+
+		// 예외 - 목적지 도착했으면 빠져 나오기
+		if (pos == dest)
+			break;
+
+		for (int32 dir = 0; dir < DIR_COUNT; dir++)
+		{
+			Pos nextPos = pos + front[dir];
+			// 갈 수 있는 지역은 맞는지 확인
+			if (!CanGo(nextPos))
+				continue;
+			// 이미 다른 경로에 의해 발견한 지역인지 확인
+			if (discovered[nextPos.y][nextPos.x])
+				continue;
+
+			q.push(nextPos);
+			discovered[nextPos.y][nextPos.x] = true;	// 이미 왔다 갔음
+
+		}
+	}
 }
