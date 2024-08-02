@@ -98,17 +98,18 @@ void Player::CalculatePath_BFS()
 		Pos(0, 1), // RIGHT
 	};
 
-	_path.clear();
-	_path.push_back(pos);
-
 	const int32 size = _board->GetSize();
 	vector<vector<bool>> discovered(size, vector<bool>(size, false));
-	// discovered[y][x] ? 
+	
+	// extra)
+	// parent[y][x] = pos -> (y, x)는 Pos에 의해 발견된다.
+	vector<vector<Pos>> parent(size, vector<Pos>(size, Pos(-1, -1)));
 
 	// 예약 시스템
 	queue<Pos> q;
 	q.push(pos);
 	discovered[pos.y][pos.x] = true;
+	parent[pos.y][pos.x] = pos;	// 나에 의해 발견 되었다
 
 	while (!q.empty())	// 큐가 안 비었으면
 	{
@@ -130,8 +131,35 @@ void Player::CalculatePath_BFS()
 				continue;
 
 			q.push(nextPos);
-			discovered[nextPos.y][nextPos.x] = true;	// 이미 왔다 갔음
+			discovered[nextPos.y][nextPos.x] = true;	// 이미 왔다고 표시
+			parent[nextPos.y][nextPos.x] = pos;
 
 		}
 	}
+
+	_path.clear();
+	pos = dest;		// 마지막 위치 저장
+
+	while (true)
+	{
+		_path.push_back(pos);
+
+		// 시작점
+		if (pos == parent[pos.y][pos.x])
+			break;
+
+		pos = parent[pos.y][pos.x];
+	}
+
+	std::reverse(_path.begin(), _path.end());
+	//vector<Pos> temp(_path.size());
+	//for (int i = 0; i < _path.size(); ++i)
+	//{
+	//	temp[i] = _path[_path.size() - 1 - i];
+	//}
+	//_path = temp;
 }
+
+// BFS의 특징 - 목적지가 없고, 아무 방향으로 퍼질 수 있다
+// 한계 - 가중치를 보고 탐색하지 않는다. 
+// 심심할 때 BFS 구현해보기(아마존 1시간 구현 문제)
