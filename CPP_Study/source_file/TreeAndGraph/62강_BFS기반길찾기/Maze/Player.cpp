@@ -7,7 +7,8 @@ void Player::Init(Board* board)
 	_pos = board->GetEnterPos();
 	_board = board;
 
-	CalculatePath();
+	//CalculatePath_RightHand();
+	CalculatePath_BFS();
 }
 
 void Player::Update(uint64 deltaTick)
@@ -31,7 +32,7 @@ bool Player::CanGo(Pos pos)
 	return tileType == TileType::EMPTY;
 }
 
-void Player::CalculatePath()
+void Player::CalculatePath_RightHand()
 {
 	Pos pos = _pos;
 
@@ -79,5 +80,27 @@ void Player::CalculatePath()
 			_dir = (_dir + 1) % DIR_COUNT;
 		}
 	}
+
+}
+
+// 그래프 기반의 길 찾기인데, 간선에 대한 정보는?
+// 초록색으로 연결된 것이 간선!
+void Player::CalculatePath_BFS()
+{
+	Pos pos = _pos;
+
+	_path.clear();
+	_path.push_back(pos);
+
+	// 목적지
+	Pos dest = _board->GetExitPos();
+
+	Pos front[4] =
+	{
+		Pos(-1, 0), // UP
+		Pos(0, -1), // LEFT
+		Pos(1, 0), // DOWN
+		Pos(0, 1), // RIGHT
+	};
 
 }
