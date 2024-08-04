@@ -1,0 +1,427 @@
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include "save.h"
+
+using namespace std;
+
+
+int main()
+{
+	// 포인터 
+	int a = 10;
+	//int* ptr = &a;
+
+	//typedef int DataType;
+	using DataType = int;
+
+	DataType* ptr = &a;
+
+	save("cpp.cpp");
+}
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include "save.h"
+
+using namespace std;
+
+void Print()
+{
+	cout << "Hello World!" << endl;
+}
+
+int main()
+{
+	// 함수 포인터
+	// Print();		// 원래는 이렇게 사용
+	
+	//typedef void FucType();		// 옛날 문법
+	using FuncType = void();
+	FuncType* ptr = &Print;
+
+	ptr();
+
+	save("cpp.cpp");
+}
+
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include "save.h"
+
+using namespace std;
+
+void Print()
+{
+	cout << "Hello World!" << endl;
+}
+
+int Add(int a, int b)
+{
+	return a + b;
+}
+
+int main()
+{
+	// 함수 포인터
+
+	// 이런 문법 거의 안 쓴다
+	using FuncType = int(int, int);		// 인자 있는 부분 시그니처 맞추기
+	FuncType* ptr = &Add;
+
+	int ret = ptr(3, 4);
+	cout << ret << endl;
+
+	
+	save("cpp.cpp");
+}
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include "save.h"
+
+using namespace std;
+
+void Print()
+{
+	cout << "Hello World!" << endl;
+}
+
+int Add(int a, int b)
+{
+	return a + b;
+}
+
+int main()
+{
+	// 함수 포인터
+
+	//void(*FuncPtrType)();
+
+	using FuncPtrType = void(*)();
+
+	FuncPtrType ptr = &Print;
+
+	ptr();
+
+	save("cpp.cpp");
+}
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include "save.h"
+
+using namespace std;
+
+void Print()
+{
+	cout << "Hello World!" << endl;
+}
+
+int Add(int a, int b)
+{
+	return a + b;
+}
+
+// '행동' 자체를 인자로 넘기고 싶을 때
+using FuncType = int(*)(int a, int b);
+
+int DoSomething(int a, int b, FuncType func)
+{
+	return func(a, b);
+}
+
+int main()
+{
+	DoSomething(10, 20, &Add);
+	DoSomething(10, 20, [](int a, int b) {return a - b; });	// 람다
+
+	save("cpp.cpp");
+}
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include "save.h"
+
+using namespace std;
+
+void Print()
+{
+	cout << "Hello World!" << endl;
+}
+
+int Add(int a, int b)
+{
+	return a + b;
+}
+
+// 콜백 함수
+// - ex) UI
+// - ex) 온라인 게임
+// - ex) 키보드 입력
+
+// '행동' 자체를 인자로 넘기고 싶을 때
+using FuncType = int(*)(int a, int b);
+
+void Fire()
+{
+
+}
+
+void Teleport()
+{
+
+}
+
+int main()
+{
+	using OnClickKeyboard = void(*)();
+
+	OnClickKeyboard qSkill = &Fire;
+
+	save("cpp.cpp");
+}
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include "save.h"
+
+using namespace std;
+
+void Print()
+{
+	cout << "Hello World!" << endl;
+}
+
+int Add(int a, int b)
+{
+	return a + b;
+}
+
+// 콜백 함수
+// - ex) UI
+// - ex) 온라인 게임
+// - ex) 키보드 입력
+
+// '행동' 자체를 인자로 넘기고 싶을 때
+
+class Item
+{
+public:
+
+public:
+	int _itemId = 0;
+	int _rarity = 0;
+	int _ownerid = 0;
+};
+
+// 이런 식으로 작성하면 _itemId, _rarity, _ownerid 등 
+// 원하는 값을 찾을 때 함수를 각각 작성해야됨
+// 비슷한 코드를 반복할 수밖에 없음
+Item* FindItem(Item items[], int itemCount)
+{
+	// 아이템을 순회하면서 특정 rarity를 찾음
+	for (int i = 0; i < itemCount; ++i)
+	{
+		Item* item = &items[i];
+		if (item->_rarity == 1)
+			return item;
+	}
+}
+
+int main()
+{
+	Item items[10];
+	items[3]._rarity = 1;	// RARE
+	save("cpp.cpp");
+}
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include "save.h"
+
+using namespace std;
+
+void Print()
+{
+	cout << "Hello World!" << endl;
+}
+
+int Add(int a, int b)
+{
+	return a + b;
+}
+
+// 콜백 함수
+// - ex) UI
+// - ex) 온라인 게임
+// - ex) 키보드 입력
+
+// '행동' 자체를 인자로 넘기고 싶을 때
+
+class Item
+{
+public:
+
+public:
+	int _itemId = 0;
+	int _rarity = 0;
+	int _ownerid = 0;
+};
+
+using ItemSelectorType = bool(*)(Item* item);
+
+// 키보드 매핑, 인벤토리에서 아이템 찾을 때 유용!
+Item* FindItem(Item items[], int itemCount, ItemSelectorType selector)
+{
+	// 아이템을 순회하면서 특정 rarity를 찾음
+	for (int i = 0; i < itemCount; ++i)
+	{
+		Item* item = &items[i];
+		if (selector(item))
+			return item;
+	}
+	return nullptr;
+}
+
+bool IsRare(Item* item)
+{
+	return item->_rarity == 1;
+}
+int main()
+{
+	Item items[10];
+	items[3]._rarity = 1;	// RARE
+	save("cpp.cpp");
+}
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include "save.h"
+
+using namespace std;
+
+void Print()
+{
+	cout << "Hello World!" << endl;
+}
+
+class Test
+{
+public:
+	void PrintTest() { }
+};
+
+int main()
+{
+	// 멤버 함수 포인터 (정적/전역 함수랑 다르다)
+
+	// 함수 호출 규약
+	// cdecl, thiscall
+
+	// 이런 문법은 잘 쓰이지는 않고 어렵지만 가끔, 언젠가는 씀
+	// 서버에서!
+	// 함수를 포인터를 쓸 때 장점 - 함수 실행 시점을 뒤로 미룰 수 있음, 나중에 시간이 될 때 호출
+	//
+	// 예시)
+	// 클라 -> 나 10번 유저 공격할래
+	// 클라2 -> 나 10, 20 좌표로 이동할래 
+	// 서버가 주문서 개념을 만들어 순차적으로 실행
+	using MemFuncPtrType = void(Test::*)();
+	MemFuncPtrType funcPtr = &Test::PrintTest;
+
+	Test t;
+	(t.*funcPtr)();	// 자기 자신의 주소를 넘기는 것
+
+	Test* t2 = &t;
+	(t.*funcPtr)();
+
+	save("cpp.cpp");
+}
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include "save.h"
+
+using namespace std;
+
+void Print()
+{
+	cout << "Hello World!" << endl;
+}
+
+class Test
+{
+public:
+	void PrintTest() { }
+};
+
+int Add (int a, int b)
+{
+	return a + b;
+}
+
+int main()
+{
+	// 멤버 함수 포인터 (정적/전역 함수랑 다르다)
+
+	// 클라 -> 나 10번 유저 공격할래
+	// 클라2 -> 나 10, 20 좌표로 이동할래 
+	// 클라3 -> 나 (20, 30) 덧셈을 해보고 싶어
+	// 
+	// 서버가 주문서 개념을 만들어 순차적으로 실행
+	using FuncPtrType = int(*)(int, int);
+	FuncPtrType func = Add;
+
+	int x = 20;
+	int y = 30;
+	func(x, y);
+
+	// 한계 - 함수 포인터는 "행동"만 정의하는 것이기 때문에 데이터를 따로 관리할 필요가 있다
+	// -> 함수 객체를 사용함!
+
+	save("cpp.cpp");
+}
