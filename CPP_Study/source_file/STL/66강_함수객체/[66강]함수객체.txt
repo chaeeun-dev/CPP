@@ -1,0 +1,211 @@
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include "save.h"
+
+using namespace std;
+
+// 함수 객체
+// 함수 포인터의 단점
+// - 시그니처가 안 맞으면 사용할 수 없음
+// - 상태를 가질 수 없음(데이터를 바인딩할 수 없음)
+
+class Functor
+{
+public:
+	void operator()()
+	{
+		cout << "Funcotr Test" << endl;
+		cout << _value << endl;
+	}
+public:
+	int _value = 0;
+};
+int main()
+{
+	Functor func;
+	func._value = 10;
+
+	func();
+
+	save("cpp.cpp");
+}
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include "save.h"
+
+using namespace std;
+
+// 함수 객체
+// 함수 포인터의 단점
+// - 시그니처가 안 맞으면 사용할 수 없음
+// - 상태를 가질 수 없음(데이터를 바인딩할 수 없음)
+
+class Functor
+{
+public:
+	void operator()()
+	{
+		cout << "Funcotr Test" << endl;
+		cout << _value << endl;
+	}
+
+	void operator()(int n)
+	{
+		cout << "Funcotr Test" << endl;
+		_value += n;
+		cout << _value << endl;
+	}
+
+public:
+	int _value = 0;
+};
+int main()
+{
+	Functor func;
+	func._value = 10;
+
+	func();
+	func(10);
+
+	save("cpp.cpp");
+}
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include "save.h"
+
+using namespace std;
+
+// 함수 객체
+// 함수 포인터의 단점
+// - 시그니처가 안 맞으면 사용할 수 없음
+// - 상태를 가질 수 없음(데이터를 바인딩할 수 없음)
+
+// 동작(함수 포인터)에 데이터까지 묶어서 관리하는 것이 Functor
+class Functor
+{
+public:
+	void operator()()
+	{
+		cout << "Funcotr Test" << endl;
+		cout << _value << endl;
+	}
+
+	void operator()(int n)
+	{
+		cout << "Funcotr Test" << endl;
+		_value += n;
+		cout << _value << endl;
+	}
+
+public:
+	int _value = 0;
+};
+
+struct AddStruct
+{
+public:
+	int operator()(int a, int b)
+	{
+		return a + b;
+	}
+};
+
+using FuncType = int(*)(int, int);
+
+// 템플릿과 functor는 궁합이 잘 맞음
+template<typename T>
+int DoSomething(int a, int b, T func)
+{
+	return func(a, b);
+}
+
+template<typename T>
+struct Greater
+{
+	bool operator()(const T& left, const T& right) const
+	{
+		return left > right;
+	}
+};
+
+
+int main()
+{
+	AddStruct func;
+	DoSomething(10, 20, func);
+
+	priority_queue <int, vector<int>, Greater<int>> pq;
+
+	save("cpp.cpp");
+}
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include "save.h"
+
+using namespace std;
+
+// 함수 객체
+// 함수 포인터의 단점
+// - 시그니처가 안 맞으면 사용할 수 없음
+// - 상태를 가질 수 없음(데이터를 바인딩할 수 없음)
+
+// 동작(함수 포인터)에 데이터까지 묶어서 관리하는 것이 Functor
+
+
+// 최상위 클래스에서 꼭 해야할 것(공식) - 소멸자 가상함수
+class Job
+{
+public:
+	Job() { }
+	virtual ~Job() { }
+};
+
+class MoveJob : public Job
+{
+public:
+	MoveJob(int x, int y) : x(x), y(y) { }
+
+	void operator()()
+	{
+		cout << "Player Move" << endl;
+	}
+
+public:
+	int x;
+	int y;
+};
+
+class AttackJob : public Job
+{
+
+};
+
+int main()
+{
+	// 클라 : (10, 20) 좌표로 이동할래
+	MoveJob* job = new MoveJob(10, 20);
+	AttackJob* attackJob = new AttackJob();
+
+	save("cpp.cpp");
+}
