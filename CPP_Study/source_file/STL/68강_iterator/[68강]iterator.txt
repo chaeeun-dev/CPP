@@ -1,0 +1,57 @@
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include "save.h"
+#include "Vector.h"
+
+using namespace std;
+
+int main()
+{
+	{
+		Vector<int> v;
+		v.push_back(10);
+		v.push_back(20);
+		v.push_back(30);
+
+		Vector<int>::iterator it;
+
+		for (it = v.begin(); it != v.end(); it++)
+		{
+			int data = *it;
+			cout << data << endl;
+		}
+		// 이 기능을 지원해야 함
+		// it++;
+		// v.begin();
+		// v.end();
+		// it != v.end();
+		// *it;
+	}
+	save("cpp.cpp");
+}
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include "save.h"
+#include "Vector.h"
+
+using namespace std;
+
+int main()
+{
+	// 지금까지 배운 내용들 한 것은 개발에 필요한 것들은 거의 끝난것!!!
+	// 게임은 그렇게 크고 깊은 지식을 요구하지 않는다. 
+	// 그냥 응용을 하는 것
+
+	save("cpp.cpp");
+}
