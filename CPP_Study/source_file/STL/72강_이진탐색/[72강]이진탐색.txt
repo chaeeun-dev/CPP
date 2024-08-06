@@ -1,0 +1,57 @@
+
+
+==========================================================================
+fileName ::, 2024-08-06 화요일 오후 4:58:06
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include "save.h"
+using namespace std;
+
+// 이진 탐색 (binary search)
+// 코딩 테스트에 종종 나옴
+
+vector<int> numbers;
+
+// O(logN) 찾을 때는 빠르지만, 중간 삽입/삭제 어려움
+void BinarySearch(int N)
+{
+	int left = 0;
+	int right = numbers.size() - 1;
+
+	while (left <= right)
+	{
+		cout << "탐색 범위 : " << left << "~" << right << endl;
+		int mid = (left + right) / 2;
+
+		if (N < numbers[mid])
+		{
+			right = mid - 1;
+		}
+		else if (N > numbers[mid])
+		{
+			cout << N << ">" << numbers[mid] << endl;
+			left = mid + 1;
+		}
+		else
+		{
+			cout << "찾았음!" << endl;
+			break;
+		}
+	}
+}
+
+int main()
+{
+	// Q) 82?
+	
+	// O(N)
+	// [1][8][15][23][32][44][56][81][91]
+	
+	numbers = { 1, 8, 15, 23, 32, 44, 56, 63, 81, 91 };
+	BinarySearch(81);
+
+	save("cpp.cpp");
+}
