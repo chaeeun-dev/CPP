@@ -1,0 +1,369 @@
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include "save.h"
+using namespace std;
+
+class Player
+{
+public:
+	Player() : _id(0) { }
+	Player(int id) : _id(id) { }
+
+public:
+	int _id = 0;
+};
+
+int main()
+{
+	// id만 들고 있는 게 아니라면, vector안에 Player를 넣는 게 괜찮을까?
+	vector<Player> v;	
+	v.push_back(Player(100));
+	v.push_back(Player(200));
+	v.push_back(Player(300));
+	v.push_back(Player(400));
+	v.push_back(Player(500));
+
+	save("cpp.cpp");
+}
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include "save.h"
+using namespace std;
+
+class Player
+{
+public:
+	Player() : _id(0) { }
+	Player(int id) : _id(id) { }
+
+public:
+	int _id = 0;
+};
+
+int main()
+{
+	// id만 들고 있는 게 아니라면, vector안에 Player를 넣는 게 괜찮을까?
+	// 직접 값을 넣기 보다는 포인터로 플레이어를 들고 있는 게 대부분
+	vector<Player*> v;	
+	v.push_back(new Player(100));
+	v.push_back(new Player(200));
+	v.push_back(new Player(300));
+	v.push_back(new Player(400));
+	v.push_back(new Player(500));
+
+	save("cpp.cpp");
+}
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include "save.h"
+using namespace std;
+
+class Player
+{
+public:
+	Player() : _id(0) { }
+	Player(int id) : _id(id) { }
+
+public:
+	int _id = 0;
+};
+
+template<typename T, typename U>
+struct Pair
+{
+	T first;
+	U second;
+};
+
+int main()
+{
+	// id만 들고 있는 게 아니라면, vector안에 Player를 넣는 게 괜찮을까?
+	// 직접 값을 넣기 보다는 포인터로 플레이어를 들고 있는 게 대부분
+	vector<Player*> v;	
+	v.push_back(new Player(100));
+	v.push_back(new Player(200));
+	v.push_back(new Player(300));
+	v.push_back(new Player(400));
+	v.push_back(new Player(500));
+
+	// map
+	// (key, value)
+	map<int, Player*> n;
+
+	// 추가
+	// 찾기
+	// 삭제
+	// 순회
+
+	Pair<int, Player*> p;
+
+	for (Player* player : v)
+	{
+		int key = player->_id;
+		Player* data = player;
+
+		n.insert(pair<int, Player*>(key, data));
+	}
+
+	save("cpp.cpp");
+}
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include "save.h"
+using namespace std;
+
+class Player
+{
+public:
+	Player() : _id(0) { }
+	Player(int id) : _id(id) { }
+
+public:
+	int _id = 0;
+};
+
+template<typename T, typename U>
+struct Pair
+{
+	T first;
+	U second;
+};
+
+template<typename T, typename U>
+auto MakePair(T first, U second)
+{
+	return std::pair<T, U>(first, second);
+}
+
+int main()
+{
+	// id만 들고 있는 게 아니라면, vector안에 Player를 넣는 게 괜찮을까?
+	// 직접 값을 넣기 보다는 포인터로 플레이어를 들고 있는 게 대부분
+	vector<Player*> v;	
+	v.push_back(new Player(100));
+	v.push_back(new Player(200));
+	v.push_back(new Player(300));
+	v.push_back(new Player(400));
+	v.push_back(new Player(500));
+
+	// map
+	// (key, value)
+	map<int, Player*> n;
+
+	// 추가
+	// 찾기
+	// 삭제
+	// 순회
+
+
+	for (Player* player : v)
+	{
+		int key = player->_id;
+		Player* data = player;
+
+		// n.insert(pair<int, Player*>(key, data));	
+		// 이렇게 pair를 일일이 쓰지 않아도
+		MakePair(key, data);	// 추론하게끔, 템플릿으로
+
+	}
+
+	save("cpp.cpp");
+}
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include "save.h"
+using namespace std;
+
+class Player
+{
+public:
+	Player() : _id(0) { }
+	Player(int id) : _id(id) { }
+
+public:
+	int _id = 0;
+};
+
+template<typename T, typename U>
+struct Pair
+{
+	T first;
+	U second;
+};
+
+template<typename T, typename U>
+auto MakePair(T first, U second)
+{
+	return std::pair<T, U>(first, second);
+}
+
+int main()
+{
+	// id만 들고 있는 게 아니라면, vector안에 Player를 넣는 게 괜찮을까?
+	// 직접 값을 넣기 보다는 포인터로 플레이어를 들고 있는 게 대부분
+	vector<Player*> v;	
+	v.push_back(new Player(100));
+	v.push_back(new Player(200));
+	v.push_back(new Player(300));
+	v.push_back(new Player(400));
+	v.push_back(new Player(500));
+
+	// map
+	// (key, value)
+	map<int, Player*> n;
+
+	// 추가
+	// 찾기
+	// 삭제
+	// 순회
+
+	// 추가
+	for (Player* player : v)
+	{
+		// 표준에서 제공하는 make_pair 함수
+		n.insert(make_pair(player->_id, player));
+	}
+
+	// 찾기 
+	// vector는 순차적으로 찾음 - 애초에 빠르게 찾는 구조가 아님
+	// map은 레드 블랙 트리로 구조가 잡혀 있어서 빠르게 찾을 수 있음
+	auto it = n.find(300);
+	int key = it->first;
+	Player* value = it->second;
+	// (*it).first == it->first		// 순간 이동 + 덧셈
+
+	save("cpp.cpp");
+}
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include "save.h"
+using namespace std;
+
+class Player
+{
+public:
+	Player() : _id(0) { }
+	Player(int id) : _id(id) { }
+
+public:
+	int _id = 0;
+};
+
+template<typename T, typename U>
+struct Pair
+{
+	T first;
+	U second;
+};
+
+template<typename T, typename U>
+auto MakePair(T first, U second)
+{
+	return std::pair<T, U>(first, second);
+}
+
+int main()
+{
+	// id만 들고 있는 게 아니라면, vector안에 Player를 넣는 게 괜찮을까?
+	// 직접 값을 넣기 보다는 포인터로 플레이어를 들고 있는 게 대부분
+	vector<Player*> v;	
+	v.push_back(new Player(100));
+	v.push_back(new Player(200));
+	v.push_back(new Player(300));
+	v.push_back(new Player(400));
+	v.push_back(new Player(500));
+
+	// map
+	// (key, value)
+	map<int, Player*> n;
+
+	// 추가
+	// 찾기
+	// 삭제
+	// 순회
+
+	// 추가
+	for (Player* player : v)
+	{
+		// 표준에서 제공하는 make_pair 함수
+		n.insert(make_pair(player->_id, player));
+	}
+
+	// 찾기!!! 
+	// vector는 순차적으로 찾음 - 애초에 빠르게 찾는 구조가 아님
+	// map은 레드 블랙 트리로 구조가 잡혀 있어서 빠르게 찾을 수 있음
+	auto it = n.find(300);		// O(logN)	- 이진 탐색이랑 같은 개념 반반씩
+	if (it != n.end())
+	{
+		int key = it->first;
+		Player* value = it->second;
+		cout << "찾음" << endl;
+	}
+	else
+		cout << "없음" << endl;
+
+	// 삭제
+	n.erase(200);
+	/*it = n.find(200);
+	n.erase(it);*/
+
+	// 순회
+	for (auto it = n.begin(); it != n.end(); it++)
+	{
+		int key = it->first;
+		Player* p = it->second;
+		// 효율적일까? 그다지... 
+	}
+
+	Player* p = n[100];	// map에서의 접근 - 100번 째 key에 해당하는 value를 갖고와
+	// 없는 key값을 접근하려고 하면? 
+	// 갖고 오되, 없으면 기본 값으로 추가(있으면 안 되는 데이터가 늘 수 있음)
+
+	// C++ STL cs UE TMap
+	// 이름이 같아도 기능은 다를 수 있으니 주의하기!
+
+	// 구현은 나중의 문제이고, 설계상으로 어떤 자료형을 쓸지 판단하는 것이 중요!!!
+	save("cpp.cpp");
+}

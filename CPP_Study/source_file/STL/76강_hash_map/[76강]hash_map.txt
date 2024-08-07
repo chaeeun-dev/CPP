@@ -1,0 +1,67 @@
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <map>
+#include <unordered_map>
+#include <set>
+#include "save.h"
+using namespace std;
+
+// 살을 내주고 뼈를 취한다
+// 메모리를 팔아서 (CPU)성능을 얻겠다!
+
+// 아파트 우편함
+// [201][202][203][204][205]
+// [101][102][103][104][105]
+// O(1) - 공간을 확보해서 데이터를 꺼내 씀
+
+// 1~999 
+// [1][2][3][4]...[999] 
+
+// 키를 알면 빠르게 찾을 수 있다 O(1)
+
+// hash 기법
+// 보안
+// id : chaeeun-dev / pw : 1234@
+// pw -> hash(1234@) = sajfklsdjfalksdjfadjfskldfjal@_ (거의 겹칠 확률이 0.0000000000000001%)
+
+
+int main()
+{
+	// hash_map
+	// 핵심은 Search
+	// O(1)
+	unordered_map<int, int>um;
+	
+	// map과 사용법 똑같음
+
+	// 추가
+	um.insert(make_pair(10, 100));
+	um[20] = 200; 
+
+	// 찾기
+	auto findit = um.find(10);
+	if (findit != um.end())
+	{
+		cout << "find" << endl;
+	}
+	else
+	{
+		cout << "can't find";
+	}
+
+	// 삭제
+	um.erase(10);
+
+	// 순회
+	for (auto it = um.begin(); it != um.end(); it++)
+	{
+		int key = it->first;
+		int value = it->second; 
+	}
+	save("cpp.cpp");
+}
