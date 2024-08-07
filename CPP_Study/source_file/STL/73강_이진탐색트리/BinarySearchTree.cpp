@@ -46,9 +46,9 @@ Node* BinarySearchTree::Search(Node* node, int key)
 }
 
 Node* BinarySearchTree::Min(Node* node)
-{ 
+{
 	if (!node)
-		return;
+		return nullptr;
 
 	while (node->left)
 		node = node->left;
@@ -59,7 +59,7 @@ Node* BinarySearchTree::Min(Node* node)
 Node* BinarySearchTree::Max(Node* node)
 {
 	if (!node)
-		return;
+		return nullptr;
 
 	while (node->right)
 		node = node->right;
@@ -69,5 +69,59 @@ Node* BinarySearchTree::Max(Node* node)
 
 Node* BinarySearchTree::Next(Node* node)
 {
-	return nullptr;
+	if (node->right)	// 노드의 right가 있으면
+		return Min(node->right);
+
+	Node* parent = node->parent;
+
+	while (parent && node == parent->right)
+	{
+		node = parent;
+		parent = parent->parent;
+	}
+
+	return parent;
+}
+
+void BinarySearchTree::Replace(Node* u, Node* v)
+{
+	// u를 삭제했을 때 끊어진 v를 연결
+	if (u->parent == nullptr)	// root노드라면
+		_root = v;
+	else if (u == u->parent->left)
+		u->parent->left = v;
+	else
+		u->parent->right = v;
+
+	if (v)	// null 체크 하는 이유? 어떤 경우 v를 null로 넣을 수도 있기 때문
+		v->parent = u->parent;
+
+	delete u;
+}
+
+void BinarySearchTree::Delete(int key)
+{
+	Node* deleteNode = Search(_root, key);
+	Delete(deleteNode);
+}
+
+void BinarySearchTree::Delete(Node* node)
+{
+	if (!node)
+		return;
+
+	if (!node->left)	// 자식 노드가 없을 때
+	{
+		Replace(node, node->right);
+	}
+	else if (!node->right)		// 왼쪽 자식 노드만 있을 때
+	{
+		Replace(node, node->left);
+	}
+	else	// 자식이 양쪽 다 있을 때(최악의 케이스)	
+	{
+		Node* next = Next(node);
+		node->key = next->key;
+		Delete(next);
+	}
 }

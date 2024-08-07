@@ -1,0 +1,39 @@
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <list>
+#include "BinarySearchTree.h"
+#include "save.h"
+using namespace std;
+
+
+int main()
+{
+	// BinarySearchTree 쉽지가 않음!
+	// 코드를 짜는 건 쉽지 않지만, 이해해야 하는 것은 핵심 개념!
+	// 데이터를 삭제할 때 다른 데이터를 옮겨주는 것
+
+	// 목적 - 데이터를 "빨리" 찾는 것
+	// 이진 탐색 -> O(logN)이지만, 정렬을 유지해야 함, 데이터 추가/삭제 어려움
+	// 이진 탐색 트리 -> 데이터 추가 삭제가 벡터보다 쉬움
+	// 부족한 것? 균형이 안 맞을 수 있음 -> 연결리스트처럼 돼서 log(N)이 될 수 있음
+	// -> 레드블랙트리, 맵 사용하는 이유!!!
+
+	BinarySearchTree bst;
+
+	bst.Insert(20);
+	bst.Insert(30);
+	bst.Insert(10);
+	
+	bst.Insert(25);
+	bst.Insert(26);
+	bst.Insert(40);
+	bst.Insert(50);
+
+	save("cpp.cpp");
+}

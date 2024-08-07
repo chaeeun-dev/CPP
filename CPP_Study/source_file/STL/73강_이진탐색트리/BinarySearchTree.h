@@ -21,6 +21,11 @@ public:
 	Node* Max(Node* node);
 	Node* Next(Node* node);
 
+	void Replace(Node* u, Node* v);
+
+	void Delete(int key);
+	void Delete(Node* node);
+
 private:
 	Node* _root = nullptr;
 };
