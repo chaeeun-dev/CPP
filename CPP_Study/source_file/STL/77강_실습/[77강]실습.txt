@@ -1,0 +1,347 @@
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include "save.h"
+using namespace std;
+
+class Object
+{
+public:
+	Object() : _id(0) { }
+	Object(int id) : _id(id) { }
+
+	virtual ~Object() { }
+	// virtual을 안 붙이면?
+	// main 함수에서
+	// Player* p = new Player(); delete p;	// 여기는 아무 문제 없음
+	// Object* p = new Player(); delete p;	// player 소멸자 호출이 안 돼서 메모리 leak 등의 문제
+public:
+	int _id;
+};
+
+class Player : public Object	// 상속
+{
+public:
+	Player() : Object(0) { }
+	Player(int id) : Object(id) { }
+
+public:
+	int _id;
+};
+
+class Monster : public Object
+{
+public:
+	int _id;
+};
+
+class Field
+{
+public:
+	static Field* GetInstance()
+	{
+		static Field field;
+		return &field;
+	}
+
+	void Add(Player* player)
+	{
+		_objects.insert(make_pair(player->_id, player));
+	}
+
+	void Remove(int id)
+	{
+		_objects.erase(id);
+	}
+
+	Object* get(int id)
+	{
+		auto findit = _objects.find(id);
+		if (findit != _objects.end())	// 찾으면
+			return findit->second;	
+		
+		return nullptr;
+	}
+
+	// vector
+	// list
+	// map
+	// hash_map
+	// 어떤 자료 구조를 사용할 것인가?
+private:
+	unordered_map<int, Object*> _objects;
+
+	//unordered_map<int, Player*> _players;
+	//unordered_map<int, Monster*> _monsters;
+};
+int main()
+{
+	Field::GetInstance()->Add(new Player(1));
+	
+	// Object* object = Field::GetInstance()->get(1);	
+	// object가 어떤 타입인지 어떻게 알 수 있을까?
+	// -> casting 4종 중 dynamic cast
+	Player* player = dynamic_cast<Player*>(Field::GetInstance()->get(1));
+	// player를 대상으로만 한다면 이런 방식으로 
+	if (player)
+	{
+
+	}
+	save("cpp.cpp");
+}
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include "save.h"
+using namespace std;
+
+enum class ObjectType
+{
+	Player,
+	Monster,
+	Projectile,
+	Env
+};
+
+class Object
+{
+public:
+	Object(ObjectType type) : _type(type) { }
+
+	virtual ~Object() { }
+	
+public:
+	ObjectType GetObjectType() { return _type; }
+
+public:
+	int _id;
+	ObjectType _type;
+};
+
+class Player : public Object	// 상속
+{
+public:
+	Player() : Object(ObjectType::Player) { }
+	Player(int id) : Object(ObjectType::Player) { }
+
+public:
+	int _id;
+};
+
+class Monster : public Object
+{
+public:
+	Monster() : Object(ObjectType::Monster) { }
+
+public:
+	int _id;
+};
+
+class Projectile : Object
+{
+public:
+	Projectile() : Object(ObjectType::Projectile) { }
+};
+
+class Env : public Object
+{
+
+};
+
+class Field
+{
+public:
+	static Field* GetInstance()
+	{
+		static Field field;
+		return &field;
+	}
+
+	void Add(Player* player)
+	{
+		_objects.insert(make_pair(player->_id, player));
+	}
+
+	void Remove(int id)
+	{
+		_objects.erase(id);
+	}
+
+	Object* get(int id)
+	{
+		auto findit = _objects.find(id);
+		if (findit != _objects.end())	// 찾으면
+			return findit->second;	
+		
+		return nullptr;
+	}
+
+	// vector
+	// list
+	// map
+	// hash_map
+	// 어떤 자료 구조를 사용할 것인가?
+private:
+	unordered_map<int, Object*> _objects;
+
+	//unordered_map<int, Player*> _players;
+	//unordered_map<int, Monster*> _monsters;
+};
+int main()
+{
+	Field::GetInstance()->Add(new Player(1));
+	
+	// dynamic casting 싫으면, Object Type을 만들어주자(위의 코드 참고)
+	Object* obj = Field::GetInstance()->get(1);
+	if (obj->GetObjectType() == ObjectType::Player)
+	{
+		Player* player = static_cast<Player*>(obj);
+	}
+
+	save("cpp.cpp");
+}
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include "save.h"
+using namespace std;
+
+enum class ObjectType
+{
+	Player,
+	Monster,
+	Projectile,
+	Env
+};
+
+class Object
+{
+public:
+	Object(ObjectType type) : _type(type) { }
+
+	virtual ~Object() { }
+
+	virtual void Init()
+	{
+
+	}
+
+	virtual void Update()
+	{
+
+	}
+	
+public:
+	ObjectType GetObjectType() { return _type; }
+
+public:
+	int _id;
+	ObjectType _type;
+};
+
+class Player : public Object	// 상속
+{
+public:
+	Player() : Object(ObjectType::Player) { }
+	Player(int id) : Object(ObjectType::Player) { }
+
+public:
+	int _id;
+};
+
+class Monster : public Object
+{
+public:
+	Monster() : Object(ObjectType::Monster) { }
+
+public:
+	int _id;
+};
+
+class Projectile : Object
+{
+public:
+	Projectile() : Object(ObjectType::Projectile) { }
+};
+
+class Env : public Object
+{
+
+};
+
+class Field
+{
+public:
+	static Field* GetInstance()
+	{
+		static Field field;
+		return &field;
+	}
+	
+	void Update()
+	{
+		for (auto& item : _objects)
+		{
+			Object* obj = item.second;
+			obj->Update();
+		}
+	}
+
+	void Add(Player* player)
+	{
+		_objects.insert(make_pair(player->_id, player));
+	}
+
+	void Remove(int id)
+	{
+		_objects.erase(id);
+	}
+
+	Object* get(int id)
+	{
+		auto findit = _objects.find(id);
+		if (findit != _objects.end())	// 찾으면
+			return findit->second;	
+		
+		return nullptr;
+	}
+
+	// vector
+	// list
+	// map
+	// hash_map
+	// 어떤 자료 구조를 사용할 것인가?
+private:
+	unordered_map<int, Object*> _objects;	// filed에 monster 관리
+
+	//unordered_map<int, Player*> _players;
+	//unordered_map<int, Monster*> _monsters;
+};
+int main()
+{
+	Field::GetInstance()->Add(new Player(1));
+	
+	// dynamic casting 싫으면, Object Type을 만들어주자(위의 코드 참고)
+	Object* obj = Field::GetInstance()->get(1);
+	if (obj->GetObjectType() == ObjectType::Player)
+	{
+		Player* player = static_cast<Player*>(obj);
+	}
+
+	save("cpp.cpp");
+}
