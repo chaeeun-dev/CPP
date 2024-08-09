@@ -1,3 +1,17 @@
+// Quick Sort
+// 구현하는 게 그렇게 중요하진 않지만 원리만이라도! 이해하기
+
+// 평균 O(NlogN)
+// 최악 O(N^2)
+
+// 보통의 sort 시간 복잡도는 O(NlogN)
+
+// sorting이 언제 필요한가? 
+// 옵션에 따라 아이템 정렬, 주변 몬스터 찾기 
+// 정렬을 너무 많이 하면 안 좋음..
+
+
+
 #include <iostream>
 using namespace std;
 #include <vector>
