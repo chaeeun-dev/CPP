@@ -1,0 +1,175 @@
+#include <iostream>
+using namespace std;
+#include <vector>
+#include <list>
+#include <queue>
+#include <map>
+#include <unordered_map>
+#include <algorithm>
+#include <windows.h>
+
+#pragma region Bubble & Selection
+void BubbleSort(vector<int>& v)
+{
+	const int n = (int)v.size();
+
+	// (N-1) + (N-2) + ... + 2 + 1
+	// 등차수열의 합 = N * (N-1) / 2
+	// O(N^2)
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = 0; j < (n - 1 - i); j++)
+		{
+			if (v[j] > v[j + 1])
+			{
+				int temp = v[j];
+				v[j] = v[j + 1];
+				v[j + 1] = temp;
+			}
+		}
+	}
+}
+
+void SelectionSort(vector<int>& v)
+{
+	const int n = (int)v.size();
+
+	// O(N^2)
+	for (int i = 0; i < n - 1; i++)
+	{
+		int bestIdx = i;
+
+		for (int j = i + 1; j < n; j++)
+		{
+			if (v[j] < v[bestIdx])
+				bestIdx = j;
+		}
+
+		// 교환
+		int temp = v[i];
+		v[i] = v[bestIdx];
+		v[bestIdx] = temp;
+	}
+}
+#pragma endregion
+
+#pragma region MergeSort
+// O(NlogN)
+void MergeResult(vector<int>& v, int left, int mid, int right)
+{
+	// [2][3][7][K][4][8][9][J]
+	//          [l]            [r]
+	int leftIdx = left;
+	int rightIdx = mid + 1;
+
+	// [2]
+	vector<int> temp;
+
+	while (leftIdx <= mid && rightIdx <= right)
+	{
+		if (v[leftIdx] <= v[rightIdx])
+		{
+			temp.push_back(v[leftIdx]);
+			leftIdx++;
+		}
+		else
+		{
+			temp.push_back(v[rightIdx]);
+			rightIdx++;
+		}
+	}
+
+	// 왼쪽이 먼저 끝났으면, 오른쪽 나머지 데이터 복사
+	if (leftIdx > mid)
+	{
+		while (rightIdx <= right)
+		{
+			temp.push_back(v[rightIdx]);
+			rightIdx++;
+		}
+	}
+	// 오른쪽이 먼저 끝났으면, 왼쪽 나머지 데이터 복사
+	else
+	{
+		while (leftIdx <= mid)
+		{
+			temp.push_back(v[leftIdx]);
+			leftIdx++;
+		}
+	}
+
+	for (int i = 0; i < temp.size(); i++)
+		v[left + i] = temp[i];
+}
+
+void MergeSort(vector<int>& v, int left, int right)
+{
+	if (left >= right)
+		return;
+
+	int mid = (left + right) / 2;
+	MergeSort(v, left, mid);
+	MergeSort(v, mid + 1, right);
+
+	MergeResult(v, left, mid, right);
+}
+#pragma endregion
+
+#pragma region QuickSort
+int Partition(vector<int>& v, int left, int right)
+{
+	int pivot = v[left];
+	int low = left + 1;
+	int high = right;
+
+	// O(N)
+	while (low <= high)
+	{
+		while (low <= right && pivot >= v[low])
+			low++;
+
+		while (high >= left + 1 && pivot <= v[high])
+			high--;
+
+		if (low < high)
+			swap(v[low], v[high]);
+	}
+
+	swap(v[left], v[high]);
+	return high;
+}
+
+// O(N^2) < 최악
+// O(NlogN) < 평균
+void QuickSort(vector<int>& v, int left, int right)
+{
+	if (left > right)
+		return;
+
+	int pivot = Partition(v, left, right);
+	QuickSort(v, left, pivot - 1);
+	QuickSort(v, pivot + 1, right);
+}
+#pragma endregion
+
+int main()
+{
+	vector<int> v;
+
+	srand(time(0));
+
+	for (int i = 0; i < 50; i++)
+	{
+		int randValue = rand() % 100;
+		v.push_back(randValue);
+	}
+
+	//BubbleSort(v);
+	//SelectionSort(v);
+	//InsertionSort(v);
+	//HeapSort(v);
+	//MergeSort(v, 0, v.size() - 1);
+	QuickSort(v, 0, v.size() - 1);
+
+	//std::sort(v.begin(), v.end(), greater<int>());
+}
