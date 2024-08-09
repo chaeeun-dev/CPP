@@ -1,0 +1,227 @@
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <algorithm>
+#include "save.h"
+using namespace std;
+
+enum class ItemType
+{
+	None,
+	Armor,
+	Weapon,
+	Jewelry,
+	Consumable
+};
+
+enum class Rarity
+{
+	Commom,
+	Rare,
+	Unique
+};
+
+class Item
+{
+public:
+	Item() {}
+	Item(int itemId, Rarity rarity, ItemType type) : _itemId(itemId), _rarity(rarity), _type(type) { }
+
+public:
+	int _itemId = 0;
+	Rarity _rarity = Rarity::Commom;
+	ItemType _type = ItemType::None;
+};
+
+
+int main()
+{
+	// auto lambda 오른값 <- 가장 중요한 삼총사!
+
+	// lambda
+	vector<Item> v;
+	v.push_back(Item(1, Rarity::Commom, ItemType::Weapon));
+	v.push_back(Item(2, Rarity::Commom, ItemType::Armor));
+	v.push_back(Item(3, Rarity::Rare, ItemType::Jewelry));
+	v.push_back(Item(4, Rarity::Unique, ItemType::Weapon));
+
+	// 람다 - 익명 함수, 일회성 함수라 굉장히 편리함.
+	// [](){}
+	// return type은 auto나 template처럼 추론에 의해 알아서 판단함.
+	{
+		std::find_if(v.begin(), v.end(), [](Item& item) {return item._rarity == Rarity::Unique; });
+	}
+
+	save("cpp.cpp");
+}
+ 
+
+==========================================================================
+
+
+#include <iostream>
+#include <algorithm>
+#include "save.h"
+using namespace std;
+
+enum class ItemType
+{
+	None,
+	Armor,
+	Weapon,
+	Jewelry,
+	Consumable
+};
+
+enum class Rarity
+{
+	Commom,
+	Rare,
+	Unique
+};
+
+class Item
+{
+public:
+	Item() {}
+	Item(int itemId, Rarity rarity, ItemType type) : _itemId(itemId), _rarity(rarity), _type(type) { }
+
+public:
+	int _itemId = 0;
+	Rarity _rarity = Rarity::Commom;
+	ItemType _type = ItemType::None;
+};
+
+
+int main()
+{
+	// auto lambda 오른값 <- 가장 중요한 삼총사!
+
+	// lambda
+	vector<Item> v;
+	v.push_back(Item(1, Rarity::Commom, ItemType::Weapon));
+	v.push_back(Item(2, Rarity::Commom, ItemType::Armor));
+	v.push_back(Item(3, Rarity::Rare, ItemType::Jewelry));
+	v.push_back(Item(4, Rarity::Unique, ItemType::Weapon));
+
+	// 람다의 캡처 방식
+	// = 복사
+	// & 참조	
+	struct IsWantedItem
+	{
+		IsWantedItem(int& wantedId) : wantedId(wantedId) { }
+		bool operator()(Item& item)
+		{
+			return item._itemId == wantedId;
+		}
+		int& wantedId;
+	};
+
+	int wantedId = 2;
+
+	IsWantedItem IsWantedItem(wantedId);
+	
+	[=](Item& item)
+	{
+		return item._itemId == wantedId;
+	};
+	
+	{
+		std::find_if(v.begin(), v.end(), [](Item& item) {return item._rarity == Rarity::Unique; });
+	}
+
+	save("cpp.cpp");
+}
+ 
+
+==========================================================================
+
+
+#include <iostream>
+#include <algorithm>
+#include "save.h"
+using namespace std;
+
+enum class ItemType
+{
+	None,
+	Armor,
+	Weapon,
+	Jewelry,
+	Consumable
+};
+
+enum class Rarity
+{
+	Commom,
+	Rare,
+	Unique
+};
+
+class Item
+{
+public:
+	Item() {}
+	Item(int itemId, Rarity rarity, ItemType type) : _itemId(itemId), _rarity(rarity), _type(type) { }
+
+public:
+	int _itemId = 0;
+	Rarity _rarity = Rarity::Commom;
+	ItemType _type = ItemType::None;
+};
+
+
+int main()
+{
+	// auto lambda 오른값 <- 가장 중요한 삼총사!
+
+	// lambda
+	vector<Item> v;
+	v.push_back(Item(1, Rarity::Commom, ItemType::Weapon));
+	v.push_back(Item(2, Rarity::Commom, ItemType::Armor));
+	v.push_back(Item(3, Rarity::Rare, ItemType::Jewelry));
+	v.push_back(Item(4, Rarity::Unique, ItemType::Weapon));
+
+	// 기본 캡처 모드
+	// = 복사
+	// & 참조	
+
+	// 단일 변수마다 캡처 모드 [&wanted]( ){ }
+
+	struct IsWantedItem
+	{
+		IsWantedItem(int& wantedId) : wantedId(wantedId) { }
+		bool operator()(Item& item)
+		{
+			return item._itemId == wantedId;
+		}
+		int& wantedId;
+	};
+
+	int wantedId = 2;
+
+	IsWantedItem IsWantedItem(wantedId);
+	
+	[=](Item& item)
+	{
+		return item._itemId == wantedId;
+	};
+	
+	{
+		std::find_if(v.begin(), v.end(), [](Item& item) {return item._rarity == Rarity::Unique; });
+	}
+
+	save("cpp.cpp");
+}
+
+/*
+[캡처모드](인자)
+{
+	내용물
+};*/
+ 
+ // 처음에는 어려운데, 사용하다보면 편해서 계속 사용할 것임!
+ // 익명 함수 + 함수 객체와 연관
