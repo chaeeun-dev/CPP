@@ -1,0 +1,103 @@
+
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+int main()
+{
+	const char* test = "Haneul";
+	cout << test << endl;
+
+	save("cpp.cpp");
+}
+ 
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+int main()
+{
+	const char* test = "하늘";
+	cout << test << endl;
+
+	// 하늘
+	// 정상적으로 출력됨
+
+	save("cpp.cpp");
+}
+ 
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+int main()
+{
+	// ASCII 코드 -> 영어만 고려
+	char ch = 'A';
+	// 7bit (0~127)
+
+	// char(1byte) 0~255
+
+	// ANSI
+	// ASCII + 각국 언어 별로 128
+	// CP949
+
+	setlocale(LC_ALL, "");
+	cout << "LC_ALL: " << setlocale(LC_ALL, NULL) << endl;
+
+	// LC_ALL: Korean_Korea.949
+
+	save("cpp.cpp");
+}
+ 
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+int main()
+{
+	// ASCII 코드 -> 영어만 고려
+	char ch = 'A';
+	// 7bit (0~127)
+
+	// char(1byte) 0~255
+
+	// ANSI << 동일한 키코드 값이 동일한 문자라는 보장이 없음
+	// ASCII + 각국 언어 별로 128
+	// CP949(한국어)
+
+	// 3) 유니코드 (동일 번호 = 동일한 문자 = 동일한 유니코드)
+	// 인코딩(utf-8, utf-16)
+	// utf-8 : 영어(1), 한국어/중국어(3)
+	// utf-16 : 영어(2), 한국(2), 중국어(2)
+
+	// 4) MBCS(Multi Byte Character Set) vs WBCS(Wide Byte Character Set)
+	// - 멀티 바이트 집합 : 가변 길이 인코딩 <- utf-8
+	// - 유니코드 집합 : 고정 길이 인코딩 <- utf-16(많이 씀)
+
+
+	auto test3 = u"aaa하늘입니다";
+
+	// 이 방법 많이 씀!
+	wstring name = L"aaa하늘입니다";
+	wcout << name << endl;
+
+	save("cpp.cpp");
+}
+ 
