@@ -1,0 +1,111 @@
+
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+int main()
+{
+	// C style 문자열
+	// 한계 
+
+	const char* name = "Haneul";
+	const char* name2 = "Haneul";
+
+	if (name == name2)
+		cout << "same" << endl;
+	else
+		cout << "different" << endl;
+
+	save("cpp.cpp");
+
+	// same
+}
+ 
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+int main()
+{
+	// C style 문자열
+	// 한계 - strcmp, strcat 등 사용하기 불편
+	// -> C++로 가자!
+
+
+	// stack 영역에 배열을 만들어 넣는 것
+	char name[] = "Haneul";
+	char name2[] = "Haneul";
+
+	// 우리는 "문자열" 비교를 원하지만, 실제로는 주소값을 비교함
+	if (name == name2)	
+		cout << "same" << endl;
+	else
+		cout << "different" << endl;
+
+	save("cpp.cpp");
+}
+ 
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+int main()
+{
+	// C style 문자열은 지양하자
+	// C++ string - vector와 비슷한 class
+
+	// 그렇게 많이 코딩할 일은 없을테니..
+	// 나중에 코딩할 때 모르겠으면 구글링!
+	// 지금은 여러가지 기능이 있다는 것을 알기
+	// 함수 인자로 넘길 때, 복사 비용 줄이고 싶으면 참조나 reference 이용!
+
+	string str = "Haneul";
+	string str2 = "Haneul";
+
+	str.capacity();
+
+	// 1) 비교 (ID/PW 맞는지)
+	if (str == str2)	// 오버로딩이 되어있음!
+	{
+		     
+	}
+
+	// 2) 복사
+	string str3;
+	str3 = str;
+
+	// 3) 추가		- 게임에서 Haneul_DELETED
+	// str.append("1234");
+	str += "1234";
+
+	// 4) 찾기
+	auto c = str.find("Han");		// 몇 번째 인덱스인지 반환
+	if (c == string::npos)
+	{
+		cout << "not found";
+	}
+
+	// 5) 교체		- 게임에서 욕을 *로 <- 서버에서? 클라에서? 클라!
+	string chatStr = "SHIT !!!";
+	string findStr = "SHIT";
+	string replaceStr = "****";
+
+	chatStr.replace(chatStr.find(findStr), findStr.length(), replaceStr);
+
+	string str4 = str.substr(0, 3);
+
+	save("cpp.cpp");
+}
+ 
