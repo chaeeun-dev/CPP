@@ -1,0 +1,528 @@
+
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+int main()
+{
+	// C++ 11 - auto lambda -> 편리해진 것, 없던 기능이 생긴 건 아님 
+	//			rvalue-ref	-> 새로운 기능! 
+
+	// 왼값(l-value) vs 오른값(r-value)
+	// l-value : 단일식을 넘어서 계속 지속되는 개체
+	// r-value : I-value가 아닌 나머지
+
+	int a = 3;		// a는 왼값, 3은 오른값
+
+	save("cpp.cpp");
+}
+ 
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+class Knight
+{
+public:
+	// 아래의 함수들이 기본적으로 만들어지고 있었음 
+	Knight()
+	{
+
+	}
+
+	~Knight()
+	{
+
+	}
+
+	// 복사 생성자
+	Knight(const Knight& knight)
+	{
+
+	}
+
+	// 복사 대입 연산자
+	void operator=(const Knight& knight)
+	{
+
+	}
+
+	// 이동 생성자
+
+	// 이동 대입 연산자
+};
+
+
+int main()
+{
+	// 왼값(l-value) vs 오른값(r-value)
+	// l-value : 단일식을 넘어서 계속 지속되는 개체
+	// r-value : I-value가 아닌 나머지
+	
+	Knight k1;	// 여기서 E0330 에러가 발생했는데.. 멤버 함수를 public으로 설정하지 않아서
+	// Knight k2 = k1;	// 복사 생성자
+	Knight k2;
+	k2 = k1;	// 복사 대입 연산자
+
+	save("cpp.cpp");
+}
+ 
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+class Knight
+{
+public:
+	// 아래의 함수들이 기본적으로 만들어지고 있었음 
+	Knight()
+	{
+
+	}
+
+	~Knight()
+	{
+
+	}
+
+	// 복사 생성자
+	Knight(const Knight& knight)
+	{
+
+	}
+
+	// 복사 대입 연산자
+	void operator=(const Knight& knight)
+	{
+
+	}
+
+	// 이동 생성자
+
+	// 이동 대입 연산자
+
+public:
+	int _hp = 0;
+};
+
+void TestKnight_Copy(Knight knight)
+{
+	knight._hp = 100;	// 복사했기 때문에 원본에 영향 X
+}
+
+int main()
+{
+	// 왼값(l-value) vs 오른값(r-value)
+	// l-value : 단일식을 넘어서 계속 지속되는 개체
+	// r-value : I-value가 아닌 나머지
+	
+	Knight k1;	
+
+	TestKnight_Copy(k1);
+	// k1 객체가 통으로 복사되어 전달됨
+	// 데이터가 많다면 굉장히 비효율적 
+	// 복사했기 때문에 원본 영향 없음!
+
+	save("cpp.cpp");
+}
+ 
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+class Knight
+{
+public:
+	// 아래의 함수들이 기본적으로 만들어지고 있었음 
+	Knight()
+	{
+
+	}
+
+	~Knight()
+	{
+
+	}
+
+	// 복사 생성자
+	Knight(const Knight& knight)
+	{
+
+	}
+
+	// 복사 대입 연산자
+	void operator=(const Knight& knight)
+	{
+
+	}
+
+	// 이동 생성자
+
+	// 이동 대입 연산자
+
+public:
+	int _hp = 0;
+};
+
+void TestKnight_Copy(Knight knight)
+{
+	knight._hp = 100;	// 복사했기 때문에 원본에 영향 X
+}
+
+// 원본 넘겨줄테니... 건드려도 됨
+void TestKnight_LValueRef(Knight& knight)
+{
+	knight._hp = 100;	// 원본에 영향 줌
+}
+
+// 원본 넘겨줄테니... 건드릴 순 없어
+void TestKnight_ConstLValueRef(const Knight& knight)
+{
+
+}
+
+// 원본 넘겨줄테니... 더 이상 활용하지 않을테니 맘대로해!
+void TestKnight_RValueRef(Knight&& kngiht)
+{
+
+}
+
+int main()
+{
+	// 왼값(l-value) vs 오른값(r-value)
+	// l-value : 단일식을 넘어서 계속 지속되는 개체
+	// r-value : I-value가 아닌 나머지
+	
+	Knight k1;	
+
+	TestKnight_Copy(k1);
+	TestKnight_LValueRef(k1);	// 왼값 참조
+	// TestKnight_ConstLValueRef(const Knight());
+	
+	TestKnight_RValueRef(static_cast<Knight&&>(k1));
+	
+	save("cpp.cpp");
+}
+ 
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+class Pet
+{
+
+};
+
+class Knight
+{
+public:
+	// 아래의 함수들이 기본적으로 만들어지고 있었음 
+	Knight()
+	{
+
+	}
+
+	~Knight()
+	{
+		if (_pet)
+			delete _pet;
+	}
+
+	// 복사 생성자
+	Knight(const Knight& knight)
+	{
+
+	}
+
+	// 복사 대입 연산자
+	void operator=(const Knight& knight)
+	{
+		_hp = knight._hp;
+		_pet = knight._pet;
+		// 이 코드를 실행하면 crash가 난다. 
+		// why? 얕은  복사, 둘 다 동일한 pet을 가리킨다
+		// ~Knight()에서 같은 pet을 delete하기 때문에 문제 발생!
+	}
+	
+
+
+	// 이동 생성자
+
+	// 이동 대입 연산자
+
+public:
+	int _hp = 0;
+	Pet* _pet = nullptr;
+};
+
+void TestKnight_Copy(Knight knight)
+{
+	knight._hp = 100;	// 복사했기 때문에 원본에 영향 X
+}
+
+// 원본 넘겨줄테니... 건드려도 됨
+void TestKnight_LValueRef(Knight& knight)
+{
+	knight._hp = 100;	// 원본에 영향 줌
+}
+
+// 원본 넘겨줄테니... 건드릴 순 없어
+void TestKnight_ConstLValueRef(const Knight& knight)
+{
+
+}
+
+// 원본 넘겨줄테니... 더 이상 활용하지 않을테니 맘대로해!
+void TestKnight_RValueRef(Knight&& kngiht)
+{
+
+}
+
+int main()
+{
+	// 왼값(l-value) vs 오른값(r-value)
+	// l-value : 단일식을 넘어서 계속 지속되는 개체
+	// r-value : I-value가 아닌 나머지
+	
+	Knight k1;	
+	k1._pet = new Pet();
+
+	TestKnight_Copy(k1);
+	TestKnight_LValueRef(k1);	// 왼값 참조
+	// TestKnight_ConstLValueRef(const Knight());
+	
+	TestKnight_RValueRef(static_cast<Knight&&>(k1));
+	
+	save("cpp.cpp");
+}
+ 
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+class Pet
+{
+
+};
+
+class Knight
+{
+public:
+	// 아래의 함수들이 기본적으로 만들어지고 있었음 
+	Knight()
+	{
+
+	}
+
+	~Knight()
+	{
+		if (_pet)
+			delete _pet;
+	}
+
+	// 복사 생성자
+	Knight(const Knight& knight)
+	{
+
+	}
+
+	// 복사 대입 연산자
+	void operator=(const Knight& knight)
+	{
+		_hp = knight._hp;
+	
+		// 얕은 복사 문제 우회 위해 깊은 복사
+		if (knight._pet)
+			_pet = new Pet(*knight._pet);	// 각기 다른 pet을 가리킴
+	}
+	
+
+
+	// 이동 생성자
+
+	// 이동 대입 연산자
+
+public:
+	int _hp = 0;
+	Pet* _pet = nullptr;
+};
+
+void TestKnight_Copy(Knight knight)
+{
+	knight._hp = 100;	// 복사했기 때문에 원본에 영향 X
+}
+
+// 원본 넘겨줄테니... 건드려도 됨
+void TestKnight_LValueRef(Knight& knight)
+{
+	knight._hp = 100;	// 원본에 영향 줌
+}
+
+// 원본 넘겨줄테니... 건드릴 순 없어
+void TestKnight_ConstLValueRef(const Knight& knight)
+{
+
+}
+
+// 원본 넘겨줄테니... 더 이상 활용하지 않을테니 맘대로해!
+void TestKnight_RValueRef(Knight&& kngiht)
+{
+
+}
+
+int main()
+{
+	// 왼값(l-value) vs 오른값(r-value)
+	// l-value : 단일식을 넘어서 계속 지속되는 개체
+	// r-value : I-value가 아닌 나머지
+	
+	Knight k1;	
+	k1._pet = new Pet();
+
+	TestKnight_Copy(k1);
+	TestKnight_LValueRef(k1);	// 왼값 참조
+	// TestKnight_ConstLValueRef(const Knight());
+	
+	TestKnight_RValueRef(static_cast<Knight&&>(k1));
+	
+	save("cpp.cpp");
+}
+ 
+
+==========================================================================
+
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+class Pet
+{
+
+};
+
+class Knight
+{
+public:
+	// 아래의 함수들이 기본적으로 만들어지고 있었음 
+	Knight()
+	{
+
+	}
+
+	~Knight()
+	{
+		if (_pet)
+			delete _pet;
+	}
+
+	// 복사 생성자
+	Knight(const Knight& knight)
+	{
+
+	}
+
+	// 복사 대입 연산자
+	void operator=(const Knight& knight)
+	{
+		_hp = knight._hp;
+	
+		// 얕은 복사 문제 우회 위해 깊은 복사
+		if (knight._pet)
+			_pet = new Pet(*knight._pet);	// 각기 다른 pet을 가리킴
+	}
+	
+
+	// 이동 생성자
+	Knight(Knight&& knight) noexcept
+	{
+		_hp = knight._hp;
+		_pet = knight._pet;
+		knight._pet = nullptr;
+	}
+
+	// 이동 대입 연산자
+	void operator=(Knight&& knight) noexcept
+	{
+		_hp = knight._hp;
+		_pet = knight._pet;
+		knight._pet = nullptr;
+	}
+	// 상대방의 모든 것을 뺏어가는 느낌, 소유권 이전
+
+public:
+	int _hp = 0;
+	Pet* _pet = nullptr;
+};
+
+void TestKnight_Copy(Knight knight)
+{
+	knight._hp = 100;	// 복사했기 때문에 원본에 영향 X
+}
+
+// 원본 넘겨줄테니... 건드려도 됨
+void TestKnight_LValueRef(Knight& knight)
+{
+	knight._hp = 100;	// 원본에 영향 줌
+}
+
+// 원본 넘겨줄테니... 건드릴 순 없어
+void TestKnight_ConstLValueRef(const Knight& knight)
+{
+
+}
+
+// 원본 넘겨줄테니... 더 이상 활용하지 않을테니 맘대로해!
+void TestKnight_RValueRef(Knight&& kngiht)
+{
+
+}
+
+int main()
+{
+	Knight k1;
+	k1._pet = new Pet();
+
+	Knight k2;
+	
+	//k2 = static_cast<Knight&&>(k1);		// 이동 생성
+	k2 = std::move(k1);	// rvalue_cast
+	
+	// 어디서 사용?
+	// vector에서 복사하지 말고 이사하기
+
+	// 실제로 코딩하는 일은 거의 없을 것.. 
+	// &&가 붙었을 때 오른값 참조라는 것을 알자!
+
+	// 기억할 것
+	// Knight& knight <- be const 참조가~ 에러 발생하면, const 붙이기
+	// 오른값 - 앞으로 더 이상 사용하지 않을 것
+	// 면접에서도 가끔 물어봄
+
+	save("cpp.cpp");
+}
+ 
