@@ -1,0 +1,61 @@
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <unordered_map>
+#include "save.h"
+using namespace std;
+
+class Knight
+{
+public:
+	~Knight()
+	{
+		cout << "~Knight()" << endl;
+	}
+
+	void Attack()
+	{
+		if (!_target.expired())
+		{
+			shared_ptr<Knight> spr = _target.lock();
+			if (spr)
+			{
+
+			}
+		}
+	}
+
+public:
+	int _hp = 100;
+	int _damage = 10;
+	weak_ptr<Knight> _target;
+};
+
+int main()
+{
+	// shared_ptr
+	// weak_ptr
+	// unique_ptr
+
+	// shared_ptr의 한계 - 객체가 서로를 주시하고 있으면(사이클), 메모리 해지가 안 됨 -> 메모리 leak
+	// weak_ptr은 shared_ptr의 한계를 보충하기 위해서 사용
+	// 2중으로 체크해야된다는 것이 불편하지만.. 
+	// 소멸됐는지 여부를 확인할 뿐
+
+	// 면접 - shared_ptr을 정확하게 설명할 수 있어야 함!
+	// shared_ptr은 refCount를 둬서 참조 개수를 관리, 참조가 늘어날 때마다 count를 늘리고, 0이될 때만 삭제하는 방식
+	// 사이클이 발생하면 shared_ptr끼리 절대 놔주지 않는 문제 발생할 수 있어서
+	// weak_ptr가 보완하기 위해, refCount에는 영향 안 주지만 weakRefCount로 별도로 레퍼런스 블록 자체 정보
+	// 어떤 메모리가 날아갔는지 확인할 수 있음
+
+	// unique_ptr <- 굉장히 간단
+	// 하나만 존재해야 할 때
+
+	// 스마트 포인터를 사용할 거면, 일반 포인터는 사용하면 안 된다!
+
+	save("cpp.cpp");
+}
+ 
