@@ -1,0 +1,82 @@
+
+
+==========================================================================
+
+
+#include <iostream>
+#include <algorithm>
+#include <Windows.h>
+#include "save.h"
+using namespace std;
+
+int combination(int n, int r)
+{
+	if (r == 0 || n == r)
+		return 1;
+
+	return combination(n - 1, r - 1) + combination(n - 1, r);
+}
+
+
+int main()
+{
+	// 알고리즘, AI 등에 유용한 기능
+	// 게임에는 별로!? 잘 안 쓰이지만...
+	// 알고 있는 게 많다는 건 무기가 되는 것!
+	
+	__int64 start = GetTickCount64();
+
+	int lotto = combination(45, 6);
+
+	__int64 end = GetTickCount64();
+
+	cout << end - start << "ms" << endl;
+
+	save("cpp.cpp");
+}
+ 
+
+==========================================================================
+
+
+#include <iostream>
+#include <algorithm>
+#include <Windows.h>
+#include "save.h"
+using namespace std;
+
+int g_count = 0;
+
+int combination(int n, int r)
+{
+	if (r == 0 || n == r)
+		return 1;
+
+	if (n == 2 && r == 1)
+		g_count++;
+
+	return combination(n - 1, r - 1) + combination(n - 1, r);
+}
+
+
+int main()
+{
+	// 알고리즘, AI 등에 유용한 기능
+	// 게임에는 별로!? 잘 안 쓰이지만...
+	// 알고 있는 게 많다는 건 무기가 되는 것!
+	
+	__int64 start = GetTickCount64();
+
+	int lotto = combination(45, 6);
+
+	__int64 end = GetTickCount64();
+
+	cout << end - start << "ms" << endl;
+	cout << "g_count : " << g_count << endl;
+
+	save("cpp.cpp");
+
+	// 31ms
+	// g_count : 962598
+}
+ 
