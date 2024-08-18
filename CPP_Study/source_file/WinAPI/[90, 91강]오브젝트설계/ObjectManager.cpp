@@ -1,0 +1,41 @@
+#include "pch.h"
+#include "ObjectManager.h"
+#include "Object.h"
+
+ObjectManager::~ObjectManager()
+{
+	Clear();
+}
+
+void ObjectManager::Add(Object* object)
+{
+	if (object == nullptr)
+		return;
+
+	auto findIt = std::find(_objects.begin(), _objects.end(), object);
+	if (findIt != _objects.end())
+		return;
+
+	_objects.push_back(object);
+}
+
+void ObjectManager::Remove(Object* object)
+{
+	if (object == nullptr)
+		return;
+
+	// remove, remove if <- 지울 때 뒤에 남기니까 꼭 erase로 지우자
+	auto it = std::remove(_objects.begin(), _objects.end(), object);
+	_objects.erase(it, _objects.end());
+
+	// TODO : 괜찮을까?
+	delete object;
+}
+
+void ObjectManager::Clear()
+{
+	// 메모리 관리하는 코드
+	std::for_each(_objects.begin(), _objects.end(), [=](Object* obj) {delete obj; });
+
+	_objects.clear();
+}
